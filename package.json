@@ -1,9 +1,16 @@
 {
+    "name": "fisheye",
+    "version": "1.0.0",
+    "description": "Projet 6",
+    "main": "index.js",
     "devDependencies": {
-        "eslint": "^8.16.0"
+        "eslint": "^8.16.0",
+        "webpack": "^5.72.1"
     },
     "scripts": {
         "lint": "eslint .",
-        "sass": "sass --watch assets/css/scss/main.scss:assets/css/main.css"
-    }
+        "sass": "sass --watch src/scss/main.scss:dist/css/main.css"
+    },
+    "author": "Fabien",
+    "license": "ISC"
 }
