@@ -3,14 +3,22 @@
     "version": "1.0.0",
     "description": "Projet 6",
     "main": "index.js",
+    "author": "Fabien",
+    "license": "ISC",
+    "scripts": {
+        "lint": "eslint .",
+        "sass": "sass --watch src/scss/main.scss:dist/css/main.css",
+        "dev": "webpack"
+    },
+    "keywords": [],
     "devDependencies": {
+        "@babel/core": "^7.18.2",
+        "@babel/preset-env": "^7.18.2",
+        "babel-loader": "^8.2.5",
         "eslint": "^8.16.0",
         "webpack": "^5.72.1"
     },
-    "scripts": {
-        "lint": "eslint .",
-        "sass": "sass --watch src/scss/main.scss:dist/css/main.css"
-    },
-    "author": "Fabien",
-    "license": "ISC"
+    "dependencies": {
+        "webpack-cli": "^4.9.2"
+    }
 }

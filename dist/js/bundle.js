@@ -1,0 +1,1 @@
+(()=>{console.log("test console"),console.log("test webpack");var o=document.querySelector(".logo");console.log(o),o.addEventListener("click",(function(){console.log("test fonction")}))})();
