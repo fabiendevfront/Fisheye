@@ -1,5 +1,4 @@
-console.log("test console");
-
+// Test pour la compilation de Webpack et Babel
 let webpack = "test webpack";
 console.log(webpack);
 
@@ -11,3 +10,8 @@ const display = () => {
 };
 
 title.addEventListener("click", display);
+
+// import {} from "./factories/photographer.js";
+// import {} from "./pages/index.js";
+// import {} from "./pages/photographer.js";
+// import {} from "./utils/contactForm.js";

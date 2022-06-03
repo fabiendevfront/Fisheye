@@ -6,9 +6,8 @@
     "author": "Fabien",
     "license": "ISC",
     "scripts": {
-        "lint": "eslint .",
         "sass": "sass --watch src/scss/main.scss:dist/css/main.css",
-        "dev": "webpack"
+        "dev": "webpack --watch"
     },
     "keywords": [],
     "devDependencies": {
@@ -16,6 +15,7 @@
         "@babel/preset-env": "^7.18.2",
         "babel-loader": "^8.2.5",
         "eslint": "^8.16.0",
+        "eslint-webpack-plugin": "^3.1.1",
         "webpack": "^5.72.1"
     },
     "dependencies": {

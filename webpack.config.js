@@ -1,11 +1,12 @@
 const path = require("path");
+const ESLintPlugin = require("eslint-webpack-plugin");
 
 module.exports = {
+    mode: "development",
     entry: path.resolve("./src/scripts/app.js"),
-    watch: true,
     output: {
         // eslint-disable-next-line no-undef
-        path: path.resolve("./dist/js"),
+        path: path.resolve(__dirname, "./dist/js"),
         filename: "bundle.js",
     },
     module: {
@@ -17,4 +18,5 @@ module.exports = {
             },
         ],
     },
+    plugins: [new ESLintPlugin()]
 };

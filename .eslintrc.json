@@ -1,13 +1,16 @@
 {
+    "root": true,
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
     "env": {
         "browser": true,
         "commonjs": true,
-        "es2021": true
+        "es6": true
     },
     "extends": "eslint:recommended",
-    "parserOptions": {
-        "ecmaVersion": "latest"
-    },
+    "ignorePatterns": ["bundle.js"],
     "rules": {
         "indent": ["error", 4],
         "linebreak-style": ["error", "windows"],
