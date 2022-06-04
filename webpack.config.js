@@ -3,7 +3,7 @@ const ESLintPlugin = require("eslint-webpack-plugin");
 
 module.exports = {
     mode: "development",
-    entry: path.resolve("./src/scripts/app.js"),
+    entry: path.resolve("./src/scripts/App.js"),
     output: {
         // eslint-disable-next-line no-undef
         path: path.resolve(__dirname, "./dist/js"),
