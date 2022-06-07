@@ -1,0 +1,57 @@
+@use '../abstracts/variables';
+@use '../abstracts/mixins';
+
+.photographer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__link {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &__picture {
+        height: 200px;
+        width: 200px;
+        border-radius: 50%;
+        overflow: hidden;
+
+        img {
+            object-fit: cover;
+            height: 100%;
+            width: 100%;
+        }
+    }
+
+    &__title {
+        color: variables.$primary-color2;
+        font-size: 36px;
+        margin: 20px 0 10px 0;
+    }
+
+    &__infos {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &__location {
+        color: variables.$primary-color1;
+        font-size: 13px;
+        margin: 0 0 10px 0;
+    }
+
+    &__tagline {
+        color: #000000;
+        font-size: 13px;
+        margin: 0 0 10px 0;
+    }
+
+    &__price {
+        color: #757575;
+        font-size: 9px;
+        margin: 0 0 10px 0;
+    }
+}

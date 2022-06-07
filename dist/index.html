@@ -1,23 +1,28 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <link href="./css/main.css" rel="stylesheet" type="text/css" />
-        <meta charset="utf-8" />
-        <link rel="icon" type="image/png" href="assets/icons/favicon.png" />
-        <link
-            href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
-            rel="stylesheet"
-        />
-        <title>Fisheye</title>
-    </head>
-    <body>
-        <header>
-            <img src="assets/images/logo/logo.png" class="logo" />
-            <h1>Nos photographes</h1>
-        </header>
-        <main id="main">
-            <div class="photographer_section"></div>
-        </main>
-        <script type="module" src="./js/bundle.js"></script>
-    </body>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Custom CSS -->
+    <link href="./css/main.css" rel="stylesheet" type="text/css" />
+    <!-- Custom JS -->
+    <script type="module" src="./js/bundle.js"></script>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/icons/favicon.png" />
+    <title>Fisheye - Accueil</title>
+</head>
+
+<body>
+    <header class="header" role="banner">
+        <a href="index.html" aria-label="Fisheye Home page" class="header__link">
+            <img src="assets/images/logo/logo.png" alt="Logo du site Fisheye" class="header__logo" />
+        </a>
+        <h1 class="header__title">Nos photographes</h1>
+    </header>
+    <main id="main">
+        <div class="photographer_section" aria-label="Section contenant tout les photographes"></div>
+    </main>
+</body>
+
 </html>

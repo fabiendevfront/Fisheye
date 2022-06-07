@@ -1,4 +1,12 @@
+@use '../abstracts/variables';
+@use '../abstracts/mixins';
+
 body {
-    font-family: "DM Sans", sans-serif;
+    font-family: variables.$font-default;
+    font-weight: 400;
     margin: 0;
+}
+
+a {
+    text-decoration: none;
 }

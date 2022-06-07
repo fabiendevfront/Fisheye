@@ -2,7 +2,6 @@ import { photographerFactory } from "../factories/PhotographerFactory.js";
 
 // Fonction qui récupère les données JSON avec Fetch asynchrone
 const getPhotographers = async () => {
-    // 1ere méthode
     try {
         let response = await fetch("../../src/data/photographers.json");
         let data = await response.json();

@@ -10,13 +10,13 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/scripts/app.js":
+/***/ "./src/scripts/App.js":
 /*!****************************!*\
-  !*** ./src/scripts/app.js ***!
+  !*** ./src/scripts/App.js ***!
   \****************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _pages_index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./pages/index.js */ \"./src/scripts/pages/index.js\");\n\n\n//# sourceURL=webpack://fisheye/./src/scripts/app.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _pages_index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./pages/index.js */ \"./src/scripts/pages/index.js\");\n\n\n//# sourceURL=webpack://fisheye/./src/scripts/App.js?");
 
 /***/ }),
 
@@ -26,7 +26,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _pag
   \******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"photographerFactory\": () => (/* binding */ photographerFactory)\n/* harmony export */ });\nvar photographerFactory = function photographerFactory(data) {\n  var id = data.id,\n      name = data.name,\n      city = data.city,\n      country = data.country,\n      tagline = data.tagline,\n      price = data.price,\n      portrait = data.portrait; // Elements communs entre les cars de la page d'accueil et  la page du photographe\n\n  var picture = \"assets/images/photographers/\".concat(portrait);\n\n  var createPhotographerCard = function createPhotographerCard() {\n    var photographerCard = document.createElement(\"article\");\n    photographerCard.classList.add(\"photographer\");\n    var photographerInfos = \"\\n                <div class=\\\"photographer__picture\\\">\\n                    <img src=\\\"\".concat(picture, \"\\\" alt=\\\"\").concat(name, \"\\\"/>\\n                </div>\\n                <h2 class=\\\"photographer__title\\\">\").concat(name, \"</h2>\\n                <div class=\\\"photographer__infos\\\">\\n                    <p class=\\\"photographer__id\\\">\").concat(id, \"</p>\\n                    <p class=\\\"photographer__location\\\">\").concat(city, \", \").concat(country, \"</p>\\n                    <p class=\\\"photographer__tagline\\\">\").concat(tagline, \"</p>\\n                    <p class=\\\"photographer__price\\\">\").concat(price, \"\\u20AC/jour</p>\\n                </div>\\n        \");\n    photographerCard.innerHTML = photographerInfos;\n    return photographerCard;\n  };\n\n  return {\n    createPhotographerCard: createPhotographerCard\n  };\n};\n\n//# sourceURL=webpack://fisheye/./src/scripts/factories/PhotographerFactory.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"photographerFactory\": () => (/* binding */ photographerFactory)\n/* harmony export */ });\nvar photographerFactory = function photographerFactory(data) {\n  var id = data.id,\n      name = data.name,\n      city = data.city,\n      country = data.country,\n      tagline = data.tagline,\n      price = data.price,\n      portrait = data.portrait; // Elements communs entre les cars de la page d'accueil et  la page du photographe\n\n  var picture = \"assets/images/photographers/\".concat(portrait);\n\n  var createPhotographerCard = function createPhotographerCard() {\n    var photographerCard = document.createElement(\"article\");\n    photographerCard.classList.add(\"photographer\");\n    var photographerInfos = \"\\n                <a href=\\\"photographer.html?id=\".concat(id, \"\\\" aria-label=\\\"Lien vers la page du photographe \").concat(name, \"\\\" class=\\\"photographer__link\\\">\\n                    <div class=\\\"photographer__picture\\\">\\n                        <img src=\\\"\").concat(picture, \"\\\" alt=\\\"\\\"/>\\n                    </div>\\n                    <h2 class=\\\"photographer__title\\\">\").concat(name, \"</h2>\\n                </a>\\n                <div class=\\\"photographer__infos\\\">\\n                    <p class=\\\"photographer__location\\\">\").concat(city, \", \").concat(country, \"</p>\\n                    <p class=\\\"photographer__tagline\\\">\").concat(tagline, \"</p>\\n                    <p class=\\\"photographer__price\\\">\").concat(price, \"\\u20AC/jour</p>\\n                </div>\\n        \");\n    photographerCard.innerHTML = photographerInfos;\n    return photographerCard;\n  };\n\n  var createPhotographerProfil = function createPhotographerProfil() {// Template de la page du profil des photographes\n  };\n\n  return {\n    createPhotographerCard: createPhotographerCard,\n    createPhotographerProfil: createPhotographerProfil\n  };\n};\n\n//# sourceURL=webpack://fisheye/./src/scripts/factories/PhotographerFactory.js?");
 
 /***/ }),
 
@@ -100,7 +100,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _fac
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module can't be inlined because the eval devtool is used.
-/******/ 	var __webpack_exports__ = __webpack_require__("./src/scripts/app.js");
+/******/ 	var __webpack_exports__ = __webpack_require__("./src/scripts/App.js");
 /******/ 	
 /******/ })()
 ;
