@@ -1,7 +1,7 @@
 export const photographerFactory = (data) => {
     const { id, name, city, country, tagline, price, portrait } = data;
 
-    // Elements communs entre les cars de la page d'accueil et  la page du photographe
+    // Elements communs entre les cards de la page d'accueil et de la page du photographe
     const picture = `assets/images/photographers/${portrait}`;
 
     const createPhotographerCard = () => {

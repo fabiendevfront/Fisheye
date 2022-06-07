@@ -10,11 +10,26 @@
         "es6": true
     },
     "extends": "eslint:recommended",
-    "ignorePatterns": ["bundle.js"],
+    "ignorePatterns": [
+        "index.bundle.js",
+        "photographer.bundle.js"
+    ],
     "rules": {
-        "indent": ["error", 4],
-        "linebreak-style": ["error", "windows"],
-        "quotes": ["error", "double"],
-        "semi": ["error", "always"]
+        "indent": [
+            "error",
+            4
+        ],
+        "linebreak-style": [
+            "error",
+            "windows"
+        ],
+        "quotes": [
+            "error",
+            "double"
+        ],
+        "semi": [
+            "error",
+            "always"
+        ]
     }
 }

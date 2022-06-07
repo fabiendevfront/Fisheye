@@ -3,9 +3,9 @@ import { photographerFactory } from "../factories/PhotographerFactory.js";
 // Fonction qui récupère les données JSON avec Fetch asynchrone
 const getPhotographers = async () => {
     try {
-        let response = await fetch("../../src/data/photographers.json");
-        let data = await response.json();
-        return ({photographers: [...data.photographers]});
+        const response = await fetch("../../src/data/photographers.json");
+        const data = await response.json();
+        return data.photographers;
     } catch(error) {
         throw new Error("Erreur à la récupération des données : ", error);
     }
@@ -19,16 +19,16 @@ const displayData = async (photographers) => {
     await photographers.forEach((photographer) => {
         // Creer un objet par photographe avec toutes ses infos avec la factory function
         // eslint-disable-next-line no-undef
-        const photographerModel = photographerFactory(photographer);
+        const photographerModel = photographerFactory(photographer).createPhotographerCard();
         // Ajoute la card au DOM
-        photographersSection.appendChild(photographerModel.createPhotographerCard());
+        photographersSection.appendChild(photographerModel);
     });
 };
 
 // Fonction qui initialise l'App en récuprérant les données du JSON et en affichant les cards photographes
 const init = async () => {
     // Récupère les datas des photographes
-    const { photographers } = await getPhotographers();
+    const photographers = await getPhotographers();
     // Affiches les photographes
     displayData(photographers);
 };
