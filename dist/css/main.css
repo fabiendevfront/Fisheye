@@ -344,19 +344,48 @@ template {
 /***********/
 /* COLORS */
 /**********/
+/**********/
+/* FONTS */
+/*********/
+/************/
+/* GENERAL */
+/***********/
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%;
+}
+
 body {
   font-family: "DM Sans", sans-serif;
   font-weight: 400;
   margin: 0;
 }
 
-a {
-  text-decoration: none;
+img {
+  max-width: 100%;
+  height: auto;
 }
 
-h1 {
+li {
+  list-style-type: none;
+}
+
+.wrapper {
+  padding: 0 8% 50px 8%;
+}
+
+.title-home {
+  font-size: 36px;
+  font-size: 2.25rem;
   color: #901C1C;
-  margin-right: 100px;
+  font-weight: 400;
+}
+
+a {
+  text-decoration: none;
 }
 
 /*****************/
@@ -433,11 +462,25 @@ form input {
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
 }
 .photographer__link {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.photographer__link:hover .photographer__title {
+  text-decoration: underline;
+}
+.photographer__link:hover .photographer__picture img {
+  transform: scale(1.2);
+  opacity: 0.5;
+  transition: all 0.6s ease-out;
+}
+.photographer__link:not(:hover) .photographer__picture img {
+  transform: scale(1);
+  opacity: 1;
+  transition: all 0.6s ease-out;
 }
 .photographer__picture {
   height: 200px;
@@ -451,9 +494,11 @@ form input {
   width: 100%;
 }
 .photographer__title {
-  color: #D3573C;
   font-size: 36px;
-  margin: 20px 0 10px 0;
+  font-size: 2.25rem;
+  font-weight: 400;
+  color: #D3573C;
+  margin: 20px 0 5px 0;
 }
 .photographer__infos {
   display: flex;
@@ -462,18 +507,21 @@ form input {
 }
 .photographer__location {
   color: #901C1C;
-  font-size: 13px;
-  margin: 0 0 10px 0;
+  font-size: 16px;
+  font-size: 1rem;
+  margin: 0 0 3px 0;
 }
 .photographer__tagline {
   color: #000000;
   font-size: 13px;
-  margin: 0 0 10px 0;
+  font-size: 0.8125rem;
+  margin: 0 0 3px 0;
 }
 .photographer__price {
   color: #757575;
-  font-size: 9px;
-  margin: 0 0 10px 0;
+  font-size: 11px;
+  font-size: 0.6875rem;
+  margin: 0 0 3px 0;
 }
 
 /*****************/
@@ -484,10 +532,13 @@ form input {
   justify-content: space-between;
   align-items: center;
   height: 90px;
+  padding-top: 20px;
 }
 .header__logo {
   height: 50px;
-  margin-left: 100px;
+}
+.header__title {
+  margin: 0;
 }
 
 /*****************/

@@ -5,11 +5,32 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
 
     &__link {
         display: flex;
         flex-direction: column;
         align-items: center;
+
+        &:hover {
+            .photographer__title {
+                text-decoration: underline;
+            }
+
+            .photographer__picture img {
+                transform: scale(1.2);
+                opacity: 0.5;
+                transition: all 0.6s ease-out;
+            }
+        }
+
+        &:not(:hover) {
+            .photographer__picture img {
+                transform: scale(1);
+                opacity: 1;
+                transition: all 0.6s ease-out;
+            }
+        }
     }
 
     &__picture {
@@ -26,9 +47,10 @@
     }
 
     &__title {
+        @include mixins.font-size(36px);
+        font-weight: 400;
         color: variables.$primary-color2;
-        font-size: 36px;
-        margin: 20px 0 10px 0;
+        margin: 20px 0 5px 0;
     }
 
     &__infos {
@@ -39,19 +61,19 @@
 
     &__location {
         color: variables.$primary-color1;
-        font-size: 13px;
-        margin: 0 0 10px 0;
+        @include mixins.font-size(16px);
+        margin: 0 0 3px 0;
     }
 
     &__tagline {
         color: #000000;
-        font-size: 13px;
-        margin: 0 0 10px 0;
+        @include mixins.font-size(13px);
+        margin: 0 0 3px 0;
     }
 
     &__price {
         color: #757575;
-        font-size: 9px;
-        margin: 0 0 10px 0;
+        @include mixins.font-size(11px);
+        margin: 0 0 3px 0;
     }
 }

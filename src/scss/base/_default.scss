@@ -1,12 +1,33 @@
 @use '../abstracts/variables';
 @use '../abstracts/mixins';
 
+/************/
+/* GENERAL */
+/***********/
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 100%;
+}
+
 body {
     font-family: variables.$font-default;
     font-weight: 400;
     margin: 0;
 }
 
-a {
-    text-decoration: none;
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+li {
+    list-style-type: none;
+}
+
+.wrapper {
+    padding: 0 8% 50px 8%;
 }
