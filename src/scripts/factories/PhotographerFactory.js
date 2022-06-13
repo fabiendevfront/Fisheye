@@ -42,5 +42,16 @@ export const photographerFactory = (data) => {
         return photographerProfil;
     };
 
-    return { createPhotographerCard, createPhotographerProfil };
+    const createPhotographerInsert = () => {
+        const photographerInsert = document.createElement("div");
+        photographerInsert.classList.add("insert");
+        const insert = `
+            <span class="insert__like" aria-label="Nombre de j'aime = ">297 081 <i class="fas fa-heart insert__heart" aria-hidden="true"></i></span>
+            <span class="insert__price" aria-label="Prix à la journée ${price}€">${price}€ / jour</span>
+        `;
+        photographerInsert.innerHTML = insert;
+        return photographerInsert;
+    };
+
+    return { createPhotographerCard, createPhotographerProfil, createPhotographerInsert };
 };

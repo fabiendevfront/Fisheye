@@ -7,3 +7,13 @@
     margin-top: 40px;
     border-radius: 5px;
 }
+
+.photographer-insert {
+    position: absolute;
+    bottom: 0;
+    right: 50px;
+    background-color: variables.$btn-secondary;
+    min-width: 350px;
+    padding: 21px 31px;
+    border-radius: 5px 5px 0 0;
+}

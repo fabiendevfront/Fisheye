@@ -468,6 +468,16 @@ form input {
   display: none;
 }
 
+.insert {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 24px;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #000000;
+}
+
 .photographer {
   display: flex;
   flex-direction: column;
@@ -610,6 +620,16 @@ form input {
   min-height: 300px;
   margin-top: 40px;
   border-radius: 5px;
+}
+
+.photographer-insert {
+  position: absolute;
+  bottom: 0;
+  right: 50px;
+  background-color: #DB8876;
+  min-width: 350px;
+  padding: 21px 31px;
+  border-radius: 5px 5px 0 0;
 }
 
 /*****************/
