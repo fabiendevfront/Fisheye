@@ -1,9 +1,9 @@
-.photograph-header {
-    background-color: #fafafa;
-    height: 300px;
-    margin: 0 100px;
-}
+@use '../abstracts/variables';
+@use '../abstracts/mixins';
 
-#contact_modal {
-    display: none;
+.photographer-header {
+    background-color: variables.$secondary-color2;
+    min-height: 300px;
+    margin-top: 40px;
+    border-radius: 5px;
 }

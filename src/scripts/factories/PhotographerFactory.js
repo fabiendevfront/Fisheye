@@ -25,7 +25,21 @@ export const photographerFactory = (data) => {
     };
 
     const createPhotographerProfil = () => {
-        // Template de la page du profil des photographes
+        const photographerProfil = document.createElement("div");
+        photographerProfil.classList.add("profil");
+        const photographerInfos =  `
+                <div class="profil__infos">
+                    <h1 class="profil__title">${name}</h1>
+                    <p class="profil__location">${city}, ${country}</p>
+                    <p class="profil__tagline">${tagline}</p>
+                </div>
+                <button class="profil__btn btn" aria-label="Contactez moi">Contactez-moi</button>
+                <div class="profil__picture">
+                    <img src="${picture}" alt="Photo du photographe ${name}"/>
+                </div>
+        `;
+        photographerProfil.innerHTML = photographerInfos;
+        return photographerProfil;
     };
 
     return { createPhotographerCard, createPhotographerProfil };

@@ -391,17 +391,23 @@ a {
 /*****************/
 /* FILES EXPORT */
 /****************/
-.contact_button {
-  font-size: 20px;
-  font-weight: bold;
-  color: white;
-  padding: 11px;
+.btn {
   width: 170px;
-  height: 70px;
+  height: 69px;
+  padding: 11px;
+  background-color: #901C1C;
   border: none;
-  background-color: #901c1c;
   border-radius: 5px;
   cursor: pointer;
+  font-size: 20px;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ffffff;
+  transition: all 0.3s ease-in-out;
+}
+.btn:hover, .btn:focus {
+  color: #000000;
+  background-color: #DB8876;
 }
 
 form {
@@ -456,6 +462,10 @@ form input {
   font-size: 64px;
   font-weight: normal;
   text-align: center;
+}
+
+#contact_modal {
+  display: none;
 }
 
 .photographer {
@@ -524,6 +534,50 @@ form input {
   margin: 0 0 3px 0;
 }
 
+.profil {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 50px;
+}
+.profil__infos {
+  text-align: start;
+}
+.profil__title {
+  font-size: 64px;
+  font-size: 4rem;
+  font-weight: 400;
+  color: #D3573C;
+  margin: 0 0 19px 0;
+}
+.profil__location {
+  font-size: 24px;
+  font-size: 1.5rem;
+  color: #901C1C;
+  margin: 0 0 19px 0;
+}
+.profil__tagline {
+  font-size: 18px;
+  font-size: 1.125rem;
+  color: #525252;
+}
+.profil__btn {
+  display: block;
+}
+.profil__picture {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: #c4c4c4 0px 4px 12px 0px;
+}
+.profil__picture img {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+
 /*****************/
 /* FILES EXPORT */
 /****************/
@@ -551,14 +605,11 @@ form input {
   margin-top: 100px;
 }
 
-.photograph-header {
+.photographer-header {
   background-color: #fafafa;
-  height: 300px;
-  margin: 0 100px;
-}
-
-#contact_modal {
-  display: none;
+  min-height: 300px;
+  margin-top: 40px;
+  border-radius: 5px;
 }
 
 /*****************/

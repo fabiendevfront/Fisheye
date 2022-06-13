@@ -1,0 +1,50 @@
+@use '../abstracts/variables';
+@use '../abstracts/mixins';
+
+.profil {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 50px;
+
+    &__infos {
+        text-align: start;
+    }
+
+    &__title {
+        @include mixins.font-size(64px);
+        font-weight: 400;
+        color: variables.$primary-color2;
+        margin: 0 0 19px 0;
+    }
+
+    &__location {
+        @include mixins.font-size(24px);
+        color: variables.$primary-color1;
+        margin: 0 0 19px 0;
+    }
+
+    &__tagline {
+        @include mixins.font-size(18px);
+        color: variables.$secondary-color1;
+    }
+
+    &__btn {
+        display: block;
+    }
+
+    &__picture {
+        height: 200px;
+        width: 200px;
+        border-radius: 50%;
+        overflow: hidden;
+        box-shadow: darken(variables.$white, 23) 0px 4px 12px 0px;
+
+        img {
+            object-fit: cover;
+            height: 100%;
+            width: 100%;
+        }
+    }
+}
