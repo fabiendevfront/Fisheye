@@ -16,12 +16,24 @@ class Api {
             throw new Error("Erreur à la récupération des données : ", error);
         }
     }
+
     // Méthode qui récupère les données JSON d'un photographe en utilisant son ID avec Fetch asynchrone
     async getPhotographerProfil(id) {
         try {
             const response = await fetch(this.url);
             const data = await response.json();
             return data.photographers.filter(photographer => photographer.id === id)[0];
+        } catch(error) {
+            throw new Error("Erreur à la récupération des données : ", error);
+        }
+    }
+
+    // Méthode qui récupère les données JSON des médias d'un photographe en utilisant son ID avec Fetch asynchrone
+    async getPhotographerMedias(id) {
+        try {
+            const response = await fetch(this.url);
+            const data = await response.json();
+            return data.media.filter(media => media.photographerId === id);
         } catch(error) {
             throw new Error("Erreur à la récupération des données : ", error);
         }

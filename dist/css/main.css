@@ -588,6 +588,45 @@ form input {
   width: 100%;
 }
 
+.media__picture {
+  width: 350px;
+  height: 300px;
+  border-radius: 5px;
+}
+.media__picture img {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+.media__infos {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.media__title {
+  font-size: 24px;
+  font-size: 1.5rem;
+  color: #901C1C;
+  font-weight: 400;
+}
+.media__form-group form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.media__form-group label {
+  font-size: 24px;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #901C1C;
+  margin-right: 5px;
+}
+.media__form-group input {
+  width: 21px;
+  height: 24px;
+}
+
 /*****************/
 /* FILES EXPORT */
 /****************/
@@ -623,13 +662,21 @@ form input {
 }
 
 .photographer-insert {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   right: 50px;
   background-color: #DB8876;
   min-width: 350px;
   padding: 21px 31px;
   border-radius: 5px 5px 0 0;
+}
+
+.photographer-portfolio {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40px;
 }
 
 /*****************/

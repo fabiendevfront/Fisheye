@@ -9,11 +9,19 @@
 }
 
 .photographer-insert {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     right: 50px;
     background-color: variables.$btn-secondary;
     min-width: 350px;
     padding: 21px 31px;
     border-radius: 5px 5px 0 0;
+}
+
+.photographer-portfolio {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
 }
