@@ -1,18 +1,23 @@
-export const mediaFactory = (data, name) => {
+import { getPhotographerName } from "../utils/tools.js";
+
+export const mediaTemplate = (data) => {
     // eslint-disable-next-line no-unused-vars
     const { date, id, image, video, likes, photographerId, price, title } = data;
+
+    // Utilise la fonction getPhotographerName pour récupèrer le nom du photographe et le formate correctement
+    const name = getPhotographerName();
 
     const typeMedia = (image) => {
         if (image !==  undefined) {
             const mediaFile = `assets/images/works/${name}/${image}`;
             return `<div class="media__picture">
                         <img src="${mediaFile}" alt=""/>
-                    </div>;`;
+                    </div>`;
         } else {
             const mediaFile = `assets/images/works/${name}/${video}`;
             return `<video class="media__video">
                         <source src="${mediaFile}" type="video/mp4"></source>
-                    </video>;`;
+                    </video>`;
         }
     };
 
