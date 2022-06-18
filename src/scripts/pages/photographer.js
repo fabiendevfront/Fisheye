@@ -4,8 +4,10 @@ import { getUrlID } from "../utils/tools.js";
 
 // Chemin du fichier JSON
 const JSON = "../../src/data/photographers.json";
+
 // Instanciation de la class Api avec le chemin du fichier JSON
 const data = new PhotographerApi(JSON);
+
 // Récupère l'ID du photographe dans l'URL
 const photographerID = getUrlID(window.location.search);
 
