@@ -388,6 +388,14 @@ a {
   text-decoration: none;
 }
 
+@keyframes skeleton {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.6;
+  }
+}
 /*****************/
 /* FILES EXPORT */
 /****************/
@@ -635,6 +643,44 @@ form input {
 .media__form-group input {
   width: 21px;
   height: 24px;
+}
+
+.skeleton-card__picture {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  background: #DDDDDD;
+  animation: skeleton 0.8s ease-in-out infinite alternate;
+}
+.skeleton-card__title, .skeleton-card__location, .skeleton-card__tagline, .skeleton-card__price {
+  background: #DDDDDD;
+  animation: skeleton 0.8s ease-in-out infinite alternate;
+}
+.skeleton-card__title {
+  width: 80%;
+  height: 30px;
+  margin: 20px 0 10px 0;
+}
+.skeleton-card__infos {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.skeleton-card__location, .skeleton-card__tagline, .skeleton-card__price {
+  margin: 0 0 3px 0;
+}
+.skeleton-card__location {
+  width: 50%;
+  height: 12px;
+}
+.skeleton-card__tagline {
+  width: 80%;
+  height: 10px;
+}
+.skeleton-card__price {
+  width: 40%;
+  height: 10px;
 }
 
 /*****************/

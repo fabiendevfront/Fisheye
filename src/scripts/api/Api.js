@@ -23,8 +23,6 @@ class PhotographerApi extends Api {
 
     // Méthode qui récupère les données JSON des photographes avec Fetch asynchrone
     async getPhotographersData() {
-        const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
-        await sleep(2000);
         const data = await this.getData();
         return data.photographers;
     }

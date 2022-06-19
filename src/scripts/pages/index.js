@@ -27,5 +27,12 @@ const init = async (data) => {
     displayData(photographers);
 };
 
-// Initialise l'App
-init(data);
+// Initialise l'App avec simulation d'un délai de chargement des données d'une API et affichage d'un loader
+window.addEventListener("load", async () => {
+    console.log("Chargement en cours");
+    const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+    await sleep(5000);
+    console.log("Chargement OK");
+    await init(data);
+    console.log("App initialisée");
+});

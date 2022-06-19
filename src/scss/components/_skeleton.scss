@@ -1,0 +1,56 @@
+@use '../abstracts/variables';
+@use '../abstracts/mixins';
+@use '../base/animations';
+
+.skeleton-card {
+
+    &__picture {
+        height: 200px;
+        width: 200px;
+        border-radius: 50%;
+        background: #DDDDDD;
+        animation: skeleton 0.8s ease-in-out infinite alternate;
+    }
+
+    &__title,
+    &__location,
+    &__tagline,
+    &__price {
+        background: #DDDDDD;
+        animation: skeleton 0.8s ease-in-out infinite alternate;
+    }
+
+    &__title {
+        width: 80%;
+        height: 30px;
+        margin: 20px 0 10px 0;
+    }
+
+    &__infos {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &__location,
+    &__tagline,
+    &__price {
+        margin: 0 0 3px 0;
+    }
+
+    &__location {
+        width: 50%;
+        height: 12px;
+    }
+
+    &__tagline {
+        width: 80%;
+        height: 10px;
+    }
+
+    &__price {
+        width: 40%;
+        height: 10px;
+    }
+}
