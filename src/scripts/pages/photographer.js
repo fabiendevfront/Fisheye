@@ -28,6 +28,10 @@ const displayData = async (photographer, portfolio) => {
         const medias = templateFactory(media, "portfolio");
         photographerPortfolio.appendChild(medias);
     });
+
+    const contactModal = document.querySelector(".contact-modal");
+    const modalForm = templateFactory(photographer, "modalForm");
+    contactModal.appendChild(modalForm);
 };
 
 // Fonction qui initialise l'App en récuprérant les données du JSON et en affichant les cards photographes

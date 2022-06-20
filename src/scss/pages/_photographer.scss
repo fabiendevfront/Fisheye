@@ -13,7 +13,7 @@
     bottom: 0;
     right: 50px;
     z-index: 200;
-    background-color: variables.$btn-secondary;
+    background-color: variables.$primary-color3;
     min-width: 350px;
     padding: 21px 31px;
     border-radius: 5px 5px 0 0;
@@ -26,4 +26,14 @@
     align-items: start;
     margin-top: 40px;
     gap: 20px;
+}
+
+.contact-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    // display: none;
+    width: 100%;
+    height: 100vh;
+    background-color: variables.$modal-bg;
 }

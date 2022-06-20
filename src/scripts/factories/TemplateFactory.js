@@ -1,6 +1,7 @@
 import { photographerTemplate } from "../templates/PhotographerTemplate.js";
 import { mediaTemplate } from "../templates/MediaTemplate.js";
 import { skeletonTemplate } from "../templates/SkeletonTemplate.js";
+import { modalTemplate } from "../templates/ModalTemplate.js";
 
 export const templateFactory = (data, type) => {
     if (type === "photographerCard") {
@@ -11,6 +12,8 @@ export const templateFactory = (data, type) => {
         return mediaTemplate(data).createMediaCard();
     } else if (type === "skeletonCard") {
         return skeletonTemplate().createSkeletonCard();
+    } else if (type === "modalForm") {
+        return modalTemplate(data).createModalForm();
     } else {
         throw "Unknown type format";
     }

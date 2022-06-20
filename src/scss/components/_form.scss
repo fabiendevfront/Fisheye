@@ -1,26 +1,41 @@
-form {
+@use '../abstracts/variables';
+@use '../abstracts/mixins';
+
+.form {
     display: flex;
     width: 100%;
     flex-direction: column;
     align-items: flex-start;
-}
 
-form label {
-    color: #312e2e;
-    font-size: 36px;
-}
+    &__group {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: self-start;
+        margin-bottom: 8px;
+    }
 
-form div {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    align-items: self-start;
-    margin-bottom: 26px;
-}
+    &__label {
+        color: variables.$label-grey;
+        @include mixins.font-size(28px);
+        margin-bottom: 5px;
+    }
 
-form input {
-    width: 100%;
-    height: 68px;
-    border: none;
-    border-radius: 5px;
+    &__input {
+        width: 100%;
+        height: 68px;
+        border: none;
+        border-radius: 5px;
+    }
+
+    &__textarea {
+        width: 100%;
+        height: 170px;
+        border: none;
+        border-radius: 5px;
+    }
+
+    &__btn {
+        margin-top: 26px;
+    }
 }

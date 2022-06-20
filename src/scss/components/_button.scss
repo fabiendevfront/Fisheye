@@ -18,6 +18,10 @@
     &:hover,
     &:focus {
         color: variables.$black;
-        background-color: variables.$btn-secondary;
+        background-color: variables.$primary-color3;
+    }
+
+    &--form {
+        @include mixins.font-size(18px);
     }
 }
