@@ -2,14 +2,18 @@ import { PhotographerApi } from "../api/Api.js";
 import { templateFactory } from "../factories/TemplateFactory.js";
 import { getUrlID } from "../utils/tools.js";
 
-// Chemin du fichier JSON
-const JSON = "../../src/data/photographers.json";
-
-// Instanciation de la class Api avec le chemin du fichier JSON
-const data = new PhotographerApi(JSON);
-
-// Récupère l'ID du photographe dans l'URL
-const photographerID = getUrlID(window.location.search);
+const getDataJSON = async () => {
+    // Chemin du fichier JSON
+    const JSON = "../../src/data/photographers.json";
+    // Instanciation de la class PhotographerApi avec le chemin du fichier JSON
+    const data = new PhotographerApi(JSON);
+    // Récupère l'ID du photographe dans l'URL
+    const photographerID = getUrlID(window.location.search);
+    // Récupère les données du photographe et de son portfolio grace à son ID
+    const photographer = await data.getPhotographerProfil(photographerID);
+    const portfolio = await data.getPhotographerMedias(photographerID);
+    return { photographer, portfolio };
+};
 
 // Affiche les données des photographes
 const displayData = async (photographer, portfolio) => {
@@ -27,14 +31,12 @@ const displayData = async (photographer, portfolio) => {
 };
 
 // Fonction qui initialise l'App en récuprérant les données du JSON et en affichant les cards photographes
-const init = async (data, photographerID) => {
-    // Récupère les données du photographe et de son portfolio grace à son ID
-    const photographer = await data.getPhotographerProfil(photographerID);
-    const portfolio = await data.getPhotographerMedias(photographerID);
-
+const init = async () => {
     // Affiche le photographe et le portfolio
-    displayData(photographer, portfolio);
+    const data = await getDataJSON();
+    // Affiche le photographe et le portfolio
+    displayData(data.photographer, data.portfolio);
 };
 
 // Initialise l'App
-init(data, photographerID);
+init();

@@ -15,9 +15,12 @@ export const mediaTemplate = (data) => {
                     </div>`;
         } else {
             const mediaFile = `assets/images/works/${name}/${video}`;
-            return `<video class="media__video">
-                        <source src="${mediaFile}" type="video/mp4"></source>
-                    </video>`;
+            return `<div class="media__video">
+                        <video>
+                            <source src="${mediaFile}" type="video/mp4"></source>
+                            <p>Votre navigateur ne prend pas en charge les vidéos HTML5 en format mp4.</p>
+                        </video>
+                    </div>`;
         }
     };
 
@@ -27,19 +30,15 @@ export const mediaTemplate = (data) => {
         const mediaCard = document.createElement("article");
         mediaCard.classList.add("media");
         const mediaInfos =  `
-               ${mediaFile}
+                <a href="#" class="media__link" aria-label="Voir le media: ${title}">
+                    ${mediaFile}
+                    <i class="fas fa-search media__magnifier" aria-hidden="true"></i>
+                </a>
                 <div class="media__infos">
                     <h2 class="media__title">${title}</h2>
-                    <div class="media__form-group">
-                        <form>
-                            <label for="like" aria-label="Nombre de j'aime: ${likes}">${likes}</label>
-                            <input
-                                class="media__form-input"
-                                type="checkbox"
-                                id="like"
-                                name="like"
-                            />
-                        </form>
+                    <div class="media__content">
+                        <p class="media__likes" aria-label="Nombre de j'aime: ${likes}">${likes}</p>
+                        <i class="fas fa-heart media__heart" aria-label="likes" role="button"></i>
                     </div>
                 </div>
         `;

@@ -2,11 +2,45 @@
 @use '../abstracts/mixins';
 
 .media {
+    width: 350px;
+
+    &__link {
+        position: relative;
+
+        &:hover {
+
+            .media__picture img,
+            .media__video video {
+                opacity: 0.5;
+                transition: all 0.6s ease-out;
+            }
+
+            .media__magnifier {
+                opacity: 1;
+                transition: all 0.2s ease-out;
+            }
+        }
+
+        &:not(:hover) {
+
+            .media__picture img,
+            .media__video video {
+                opacity: 1;
+                transition: all 0.6s ease-out;
+            }
+
+            .media__magnifier {
+                opacity: 0;
+                transition: all 0.2s ease-out;
+            }
+        }
+    }
 
     &__picture {
         width: 350px;
         height: 300px;
         border-radius: 5px;
+        cursor: pointer;
 
         img {
             object-fit: cover;
@@ -19,46 +53,60 @@
         width: 350px;
         height: 300px;
         border-radius: 5px;
+        cursor: pointer;
 
-        source {
+        video {
             object-fit: cover;
             height: 100%;
             width: 100%;
         }
     }
 
+    &__magnifier {
+        opacity: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        @include mixins.font-size(50px);
+        color: variables.$primary-color2;
+    }
+
     &__infos {
         display: flex;
         justify-content: space-between;
-        align-items: center;
+        align-items: start;
+        margin-top: 10px;
     }
 
     &__title {
         @include mixins.font-size(24px);
         color: variables.$primary-color1;
         font-weight: 400;
+        margin: 0;
     }
 
-    &__form-group {
+    &__content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 
-        form {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
+    &__likes {
+        @include mixins.font-size(24px);
+        font-weight: 500;
+        color: variables.$primary-color1;
+        margin: 0 5px 0 0;
+    }
+
+    &__heart {
+        @include mixins.font-size(22px);
+        color: variables.$primary-color1;
+        cursor: pointer;
+
+        &:hover,
+        &:focus {
+            color: variables.$primary-color2;
         }
-
-        label {
-            @include mixins.font-size(24px);
-            font-weight: 500;
-            color: variables.$primary-color1;
-            margin-right: 5px;
-        }
-
-        input {
-            width: 21px;
-            height: 24px;
-        }
-
     }
 }
