@@ -393,7 +393,7 @@ a {
     opacity: 1;
   }
   to {
-    opacity: 0.6;
+    opacity: 0.4;
   }
 }
 /*****************/
@@ -645,6 +645,12 @@ form input {
   height: 24px;
 }
 
+.skeleton-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
 .skeleton-card__picture {
   height: 200px;
   width: 200px;
