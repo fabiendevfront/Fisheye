@@ -14,6 +14,8 @@ export const templateFactory = (data, type) => {
         return skeletonTemplate().createSkeletonCard();
     } else if (type === "modalForm") {
         return modalTemplate(data).createModalForm();
+    } else if (type === "modalSuccess") {
+        return modalTemplate().createModalSuccess();
     } else {
         throw "Unknown type format";
     }

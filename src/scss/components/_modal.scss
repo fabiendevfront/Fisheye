@@ -1,7 +1,8 @@
 @use '../abstracts/variables';
 @use '../abstracts/mixins';
 
-.modal-form {
+.modal-form,
+.modal-success {
     width: 50%;
     max-width: 600px;
     position: absolute;
@@ -13,7 +14,14 @@
     padding: 38px 35px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+
+    &__close {
+        margin-top: 10px;
+        cursor: pointer;
+    }
+}
+
+.modal-form {
 
     &__header {
         display: flex;
@@ -22,16 +30,49 @@
         width: 100%;
     }
 
-    &__close {
-        margin-top: 10px;
-        cursor: pointer;
-    }
-
     &__title {
         @include mixins.font-size(55px);
         line-height: 1;
         font-weight: 400;
         text-align: start;
         margin: 0 0 20px 0;
+    }
+}
+
+.modal-success {
+    text-align: center;
+
+    &__close {
+        position: absolute;
+        right: 35px;
+        top: 35px;
+        width: 42px;
+        height: 42px;
+    }
+
+    &__content {
+        padding-top: 80px;
+    }
+
+    &__thanks,
+    &__send {
+        margin: 0;
+        padding: 30px;
+    }
+
+    &__send {
+        padding: 30px;
+        @include mixins.font-size(35px);
+        font-weight: 400;
+    }
+
+    &__thanks {
+        margin: 0;
+        padding: 30px;
+        @include mixins.font-size(40px);
+    }
+
+    &__btn {
+        margin: 50px auto 0 auto;
     }
 }

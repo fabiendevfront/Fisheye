@@ -388,6 +388,25 @@ a {
   text-decoration: none;
 }
 
+/**************/
+/* KEYFRAMES */
+/*************/
+@keyframes open-modal {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes close-modal {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
 @keyframes skeleton {
   from {
     opacity: 1;
@@ -420,6 +439,10 @@ a {
 .btn--form {
   font-size: 18px;
   font-size: 1.125rem;
+}
+.btn--form:hover, .btn--form:focus {
+  color: #ffffff;
+  background-color: #312e2e;
 }
 
 .form {
@@ -457,7 +480,8 @@ a {
   margin-top: 26px;
 }
 
-.modal-form {
+.modal-form,
+.modal-success {
   width: 50%;
   max-width: 600px;
   position: absolute;
@@ -469,17 +493,18 @@ a {
   padding: 38px 35px;
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
+.modal-form__close,
+.modal-success__close {
+  margin-top: 10px;
+  cursor: pointer;
+}
+
 .modal-form__header {
   display: flex;
   justify-content: space-between;
   align-items: start;
   width: 100%;
-}
-.modal-form__close {
-  margin-top: 10px;
-  cursor: pointer;
 }
 .modal-form__title {
   font-size: 55px;
@@ -488,6 +513,39 @@ a {
   font-weight: 400;
   text-align: start;
   margin: 0 0 20px 0;
+}
+
+.modal-success {
+  text-align: center;
+}
+.modal-success__close {
+  position: absolute;
+  right: 35px;
+  top: 35px;
+  width: 42px;
+  height: 42px;
+}
+.modal-success__content {
+  padding-top: 80px;
+}
+.modal-success__thanks, .modal-success__send {
+  margin: 0;
+  padding: 30px;
+}
+.modal-success__send {
+  padding: 30px;
+  font-size: 35px;
+  font-size: 2.1875rem;
+  font-weight: 400;
+}
+.modal-success__thanks {
+  margin: 0;
+  padding: 30px;
+  font-size: 40px;
+  font-size: 2.5rem;
+}
+.modal-success__btn {
+  margin: 50px auto 0 auto;
 }
 
 .insert {
@@ -800,12 +858,17 @@ a {
 }
 
 .contact-modal {
+  visibility: hidden;
+  transition: visibility 0.6s;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100vh;
   background-color: rgba(196, 196, 196, 0.4);
+}
+.contact-modal.active {
+  visibility: visible;
 }
 
 /*****************/

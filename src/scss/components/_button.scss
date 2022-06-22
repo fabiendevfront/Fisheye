@@ -23,5 +23,11 @@
 
     &--form {
         @include mixins.font-size(18px);
+
+        &:hover,
+        &:focus {
+            color: variables.$white;
+            background-color: variables.$label-grey;
+        }
     }
 }

@@ -1,6 +1,7 @@
 import { PhotographerApi } from "../api/Api.js";
 import { templateFactory } from "../factories/TemplateFactory.js";
 import { getUrlID } from "../utils/tools.js";
+import { modalTools } from "../utils/modal.js";
 
 const getDataJSON = async () => {
     // Chemin du fichier JSON
@@ -16,7 +17,7 @@ const getDataJSON = async () => {
 };
 
 // Affiche les données des photographes
-const displayData = async (photographer, portfolio) => {
+const displayData = (photographer, portfolio) => {
     // Creation du profil avec le méthode createPhotographerProfil() de la PhotographerFactory et l'ajoute au DOM
     const photographerHeader = document.querySelector(".photographer-header");
     const profil = templateFactory(photographer, "photographerProfil");
@@ -24,14 +25,20 @@ const displayData = async (photographer, portfolio) => {
 
     // Parcours le tableau et creer des cartes média avec le méthode createMediaCard() de la MediaFactory et l'ajoute au DOM
     const photographerPortfolio = document.querySelector(".photographer-portfolio");
-    await portfolio.forEach((media) => {
+    portfolio.forEach((media) => {
         const medias = templateFactory(media, "portfolio");
         photographerPortfolio.appendChild(medias);
     });
+};
 
+// Création de la modale de contact
+const displayModal = (photographer) => {
     const contactModal = document.querySelector(".contact-modal");
     const modalForm = templateFactory(photographer, "modalForm");
     contactModal.appendChild(modalForm);
+    const modalSuccess = templateFactory(photographer, "modalSuccess");
+    contactModal.appendChild(modalSuccess);
+    modalTools();
 };
 
 // Fonction qui initialise l'App en récuprérant les données du JSON et en affichant les cards photographes
@@ -40,6 +47,7 @@ const init = async () => {
     const data = await getDataJSON();
     // Affiche le photographe et le portfolio
     displayData(data.photographer, data.portfolio);
+    displayModal(data.photographer);
 };
 
 // Initialise l'App

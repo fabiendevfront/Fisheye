@@ -64,12 +64,8 @@ const init = async (data) => {
 window.addEventListener("load", async () => {
     const photographers = await getDataJSON();
     await displaySkeleton(photographers);
-    console.log("Chargement en cours");
     const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
-    await sleep(3000);
-    console.log("Chargement OK");
+    await sleep(2000);
     await removeSkeleton(photographers);
-    console.log("Skeleton supprimé");
     await init(photographers);
-    console.log("App initialisée");
 });

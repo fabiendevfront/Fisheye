@@ -1,13 +1,13 @@
 export const modalTemplate = (data) => {
-    const { name } = data;
 
     const createModalForm = () => {
+        const name = data.name;
         const modal = document.createElement("div");
         modal.classList.add("modal-form");
         const modalContent =  `
             <header class="modal-form__header">
                 <h2 class="modal-form__title">Contactez-moi ${name}</h2>
-                <img src="assets/icons/close.svg" class="modal-form__close" onclick="closeModal()" />
+                <img src="assets/icons/close.svg" class="modal-form__close modal-trigger"/>
             </header>
             <form class="form">
                 <div class="form__group">
@@ -44,7 +44,6 @@ export const modalTemplate = (data) => {
                         id="message"
                         name="message"
                         rows="10"
-                        cols="33"
                     >
                     </textarea>
                 </div>
@@ -55,5 +54,20 @@ export const modalTemplate = (data) => {
         return modal;
     };
 
-    return { createModalForm };
+    const createModalSuccess = () => {
+        const modalSuccess = document.createElement("div");
+        modalSuccess.classList.add("modal-success");
+        const modalSuccessContent =  `
+            <img src="assets/icons/close.svg" class="modal-success__close modal-trigger"/>
+            <div class="modal-success__content">
+                <p class="modal-success__send">Votre message a bien été envoyé.</p>
+                <p class="modal-success__thanks">Merci !</p>
+            </div>
+            <button class="modal-success__btn btn btn--form modal-trigger">Fermer</button>
+        `;
+        modalSuccess.innerHTML = modalSuccessContent;
+        return modalSuccess;
+    };
+
+    return { createModalForm, createModalSuccess };
 };
