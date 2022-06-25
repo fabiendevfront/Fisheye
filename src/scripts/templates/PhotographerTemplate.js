@@ -33,7 +33,12 @@ export const photographerTemplate = (data) => {
                     <p class="profil__location">${city}, ${country}</p>
                     <p class="profil__tagline">${tagline}</p>
                 </div>
-                <button class="profil__btn btn modal-trigger" aria-label="Contactez moi">Contactez-moi</button>
+                <button
+                    class="profil__btn btn modal-trigger"
+                    aria-label="Contactez ${name}"
+                    aria-haspopup="dialog"
+                    aria-controls="contact-modal"
+                >Contactez-moi</button>
                 <div class="profil__picture">
                     <img src="${picture}" alt="Photo du photographe ${name}"/>
                 </div>

@@ -62,14 +62,14 @@
 
     &__send {
         padding: 30px;
-        @include mixins.font-size(35px);
+        @include mixins.font-size(50px);
         font-weight: 400;
     }
 
     &__thanks {
         margin: 0;
         padding: 30px;
-        @include mixins.font-size(40px);
+        @include mixins.font-size(45px);
     }
 
     &__btn {

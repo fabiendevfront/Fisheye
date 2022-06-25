@@ -2,6 +2,8 @@ import { PhotographerApi } from "../api/Api.js";
 import { templateFactory } from "../factories/TemplateFactory.js";
 import { getUrlID } from "../utils/tools.js";
 import { modalTools } from "../utils/modal.js";
+import { formTools } from "../utils/form.js";
+
 
 const getDataJSON = async () => {
     // Chemin du fichier JSON
@@ -39,6 +41,7 @@ const displayModal = (photographer) => {
     const modalSuccess = templateFactory(photographer, "modalSuccess");
     contactModal.appendChild(modalSuccess);
     modalTools();
+    formTools();
 };
 
 // Fonction qui initialise l'App en récuprérant les données du JSON et en affichant les cards photographes

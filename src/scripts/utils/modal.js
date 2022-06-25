@@ -3,12 +3,6 @@
 */
 
 /* ======================
-   DOM elements selection
-   ====================== */
-
-const modalItem = document.querySelector(".contact-modal");
-
-/* ======================
    Modal tools for photographer page after create DOM of modal
    ====================== */
 
@@ -17,6 +11,12 @@ export const modalTools = () => {
     eventClickModalTriggers(modalTriggers);
     eventKeyModalTriggers(modalTriggers);
 };
+
+/* ======================
+   DOM elements selection
+   ====================== */
+const modalItem = document.querySelector(".contact-modal");
+const main = document.querySelector(".main");
 
 /* ======================
    Display and hide modal
@@ -33,10 +33,13 @@ const toggleModal = () => {
     if (modalItem.classList.length !== 1) {
         modalItem.style.animation = "open-modal 0.8s";
         modalForm.style.display = "flex";
+        modalItem.setAttribute("aria-hidden", "false");
+        main.setAttribute("aria-hidden", "true");
         modalSuccess.style.display = "none";
     } else {
         modalItem.style.animation = "close-modal 0.8s";
-        // modalSuccess.style.display = "flex";
+        modalItem.setAttribute("aria-hidden", "true");
+        main.setAttribute("aria-hidden", "false");
     }
 };
 
@@ -45,11 +48,10 @@ const toggleModal = () => {
    ============= */
 
 // Hide the form and display the success modal on validation
-// eslint-disable-next-line no-unused-vars
-const displaySuccessModal = () => {
+export const displaySuccessModal = () => {
+    const modalForm = document.querySelector(".modal-form");
     const modalSuccess = document.querySelector(".modal-success");
-    const formItem = document.querySelector(".form");
-    formItem.style.display = "none";
+    modalForm.style.display = "none";
     modalSuccess.style.display = "flex";
 };
 
@@ -85,4 +87,3 @@ document.addEventListener("keydown", (event) => {
         }
     }
 });
-
