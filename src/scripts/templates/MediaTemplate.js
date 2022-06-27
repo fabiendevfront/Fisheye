@@ -38,7 +38,7 @@ export const mediaTemplate = (data) => {
                     <h2 class="media__title">${title}</h2>
                     <div class="media__content">
                         <p class="media__likes" aria-label="Nombre de j'aime: ${likes}">${likes}</p>
-                        <i class="fas fa-heart media__heart" aria-label="likes" role="button"></i>
+                        <i class="fas fa-heart media__heart" aria-label="likes" role="button" tabindex="0"></i>
                     </div>
                 </div>
         `;

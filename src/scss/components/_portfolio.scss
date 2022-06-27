@@ -108,5 +108,9 @@
         &:focus {
             color: variables.$primary-color2;
         }
+
+        &.liked {
+            color: variables.$black;
+        }
     }
 }

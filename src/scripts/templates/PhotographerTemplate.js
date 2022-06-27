@@ -28,7 +28,7 @@ export const photographerTemplate = (data) => {
         const photographerProfil = document.createElement("div");
         photographerProfil.classList.add("profil");
         const photographerInfos =  `
-                <div class="profil__infos">
+                <div class="profil__infos" tabindex="0">
                     <h1 class="profil__title">${name}</h1>
                     <p class="profil__location">${city}, ${country}</p>
                     <p class="profil__tagline">${tagline}</p>
@@ -39,12 +39,12 @@ export const photographerTemplate = (data) => {
                     aria-haspopup="dialog"
                     aria-controls="contact-modal"
                 >Contactez-moi</button>
-                <div class="profil__picture">
+                <div class="profil__picture" tabindex="0">
                     <img src="${picture}" alt="Photo du photographe ${name}"/>
                 </div>
-                <aside class="photographer-insert">
+                <aside class="photographer-insert" tabindex="0">
                     <div class="insert">
-                        <span class="insert__like" aria-label="Nombre de j'aime = ">297 081 <i class="fas fa-heart insert__heart" aria-hidden="true"></i></span>
+                        <span class="insert__like" aria-label="Nombre de j'aime"></span>
                         <span class="insert__price" aria-label="Prix à la journée ${price}€">${price}€ / jour</span>
                     </div>
                 </aside>

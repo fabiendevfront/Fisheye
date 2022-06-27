@@ -3,6 +3,7 @@ import { templateFactory } from "../factories/TemplateFactory.js";
 import { getUrlID } from "../utils/tools.js";
 import { modalTools } from "../utils/modal.js";
 import { formTools } from "../utils/form.js";
+import { likesTools } from "../utils/likes.js";
 
 
 const getDataJSON = async () => {
@@ -31,6 +32,7 @@ const displayData = (photographer, portfolio) => {
         const medias = templateFactory(media, "portfolio");
         photographerPortfolio.appendChild(medias);
     });
+    likesTools();
 };
 
 // Création de la modale de contact

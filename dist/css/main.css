@@ -780,6 +780,9 @@ a {
 .media__heart:hover, .media__heart:focus {
   color: #D3573C;
 }
+.media__heart.liked {
+  color: #000000;
+}
 
 .skeleton-card {
   display: flex;
