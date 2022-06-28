@@ -1,0 +1,27 @@
+@use '../abstracts/variables';
+@use '../abstracts/mixins';
+
+.sort-filter {
+    @include mixins.font-size(18px);
+
+    &__label {
+        @include mixins.font-size(18px);
+        font-weight: 700;
+        margin-right: 25px;
+    }
+
+    &__select {
+        width: 170px;
+        height: 69px;
+        background-color: variables.$primary-color1;
+        color: variables.$white;
+        border: none;
+        border-radius: 5px;
+
+    }
+
+    &__option {
+        @include mixins.font-size(18px);
+        font-weight: 700;
+    }
+}

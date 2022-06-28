@@ -828,6 +828,30 @@ a {
   height: 10px;
 }
 
+.sort-filter {
+  font-size: 18px;
+  font-size: 1.125rem;
+}
+.sort-filter__label {
+  font-size: 18px;
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin-right: 25px;
+}
+.sort-filter__select {
+  width: 170px;
+  height: 69px;
+  background-color: #901C1C;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+}
+.sort-filter__option {
+  font-size: 18px;
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
 /*****************/
 /* FILES EXPORT */
 /****************/
@@ -880,6 +904,10 @@ a {
   align-items: start;
   margin-top: 40px;
   gap: 20px;
+}
+
+.media-sorting {
+  margin-top: 20px;
 }
 
 .contact-modal {

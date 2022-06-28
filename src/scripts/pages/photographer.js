@@ -4,6 +4,7 @@ import { getUrlID } from "../utils/tools.js";
 import { modalTools } from "../utils/modal.js";
 import { formTools } from "../utils/form.js";
 import { likesTools } from "../utils/likes.js";
+import { sortsTools } from "../utils/sorts.js";
 
 
 const getDataJSON = async () => {
@@ -21,7 +22,7 @@ const getDataJSON = async () => {
 
 // Affiche les données des photographes
 const displayData = (photographer, portfolio) => {
-    // Creation du profil avec le méthode createPhotographerProfil() de la PhotographerFactory et l'ajoute au DOM
+    // Creation du profil avec le méthode createPhotographerProfil() de PhotographerTemplate et l'ajoute au DOM
     const photographerHeader = document.querySelector(".photographer-header");
     const profil = templateFactory(photographer, "photographerProfil");
     photographerHeader.appendChild(profil);
@@ -32,7 +33,15 @@ const displayData = (photographer, portfolio) => {
         const medias = templateFactory(media, "portfolio");
         photographerPortfolio.appendChild(medias);
     });
+
+    // Creation des filtres avec le méthode createSortFilter() de SortTemplate et l'ajoute au DOM
+    const sortMedias = document.querySelector(".media-sorting");
+    const sortFilter = templateFactory(portfolio, "sortFilter");
+    sortMedias.appendChild(sortFilter);
+
+    // Tools
     likesTools();
+    sortsTools();
 };
 
 // Création de la modale de contact

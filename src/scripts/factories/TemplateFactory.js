@@ -2,6 +2,7 @@ import { photographerTemplate } from "../templates/PhotographerTemplate.js";
 import { mediaTemplate } from "../templates/MediaTemplate.js";
 import { skeletonTemplate } from "../templates/SkeletonTemplate.js";
 import { modalTemplate } from "../templates/ModalTemplate.js";
+import { sortTemplate } from "../templates/SortTemplate.js";
 
 export const templateFactory = (data, type) => {
     if (type === "photographerCard") {
@@ -16,6 +17,8 @@ export const templateFactory = (data, type) => {
         return modalTemplate(data).createModalForm();
     } else if (type === "modalSuccess") {
         return modalTemplate().createModalSuccess();
+    } else if (type === "sortFilter") {
+        return sortTemplate().createSortFilter();
     } else {
         throw "Unknown type format";
     }
