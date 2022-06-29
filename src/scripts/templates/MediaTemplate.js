@@ -9,12 +9,12 @@ export const mediaTemplate = (data) => {
 
     const typeMedia = (image) => {
         if (image !==  undefined) {
-            const mediaFile = `assets/images/works/${name}/${image}`;
+            const mediaFile = `dist/assets/images/works/${name}/${image}`;
             return `<div class="media__picture">
                         <img src="${mediaFile}" alt=""/>
                     </div>`;
         } else {
-            const mediaFile = `assets/images/works/${name}/${video}`;
+            const mediaFile = `dist/assets/images/works/${name}/${video}`;
             return `<div class="media__video">
                         <video>
                             <source src="${mediaFile}" type="video/mp4"></source>

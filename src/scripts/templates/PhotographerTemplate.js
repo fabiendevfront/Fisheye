@@ -2,7 +2,7 @@ export const photographerTemplate = (data) => {
     const { id, name, city, country, tagline, price, portrait } = data;
 
     // Chemin de la photo du photographe
-    const picture = `assets/images/photographers/${portrait}`;
+    const picture = `dist/assets/images/photographers/${portrait}`;
 
     const createPhotographerCard = () => {
         const photographerCard = document.createElement("article");
