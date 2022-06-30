@@ -62,7 +62,7 @@ const regexPatterns = {
     ============================================= */
 
 const validateField = (formField, error) => {
-    if (formField.id === "first" || formField.id === "last") {
+    if (formField.type === "text") {
         if (!regexPatterns.name.test(formField.value)) {
             formField.classList.add("form__input--error");
             formField.previousElementSibling.insertAdjacentHTML("beforeend", `
@@ -72,7 +72,7 @@ const validateField = (formField, error) => {
         } else {
             return true;
         }
-    } else if (formField.id === "email") {
+    } else if (formField.type === "email") {
         if (!regexPatterns.email.test(formField.value)) {
             formField.classList.add("form__input--error");
             formField.previousElementSibling.insertAdjacentHTML("beforeend", `<span id="erroremail" class="form__error">${error.email}</span>`);
@@ -81,7 +81,7 @@ const validateField = (formField, error) => {
         } else {
             return true;
         }
-    } else if (formField.id === "message") {
+    } else if (formField.type === "textarea") {
         if (!regexPatterns.message.test(formField.value)) {
             formField.classList.add("form__input--error");
             formField.previousElementSibling.insertAdjacentHTML("beforeend", `<span id="errormsg" class="form__error">${error.message}</span>`);
@@ -125,12 +125,11 @@ const formValidation = (formFields) => {
         if(!validateField(formField, errorMsg)) {
             valid = false;
         } else {
-            console.log(`${formField.name} = ${formField.value}`);
+            console.log(`${formField.previousElementSibling.textContent} : ${formField.value}`);
         }
     });
 
     if (valid) {
-        console.log("Votre message a été envoyé !");
         displaySuccessModal();
         removeAllValues(formFields);
     } else {

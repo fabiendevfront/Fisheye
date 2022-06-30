@@ -9,7 +9,7 @@ export const modalTemplate = (data) => {
             <header class="modal-form__header">
                 <h2 id="modalTitle" class="modal-form__title">Contactez-moi ${name}</h2>
                 <img
-                    src="assets/icons/close.svg"
+                    src="dist/assets/icons/close.svg"
                     class="modal-form__close modal-trigger"
                     type="button"
                     aria-label="Fermer cette fenêtre modale"
@@ -70,7 +70,7 @@ export const modalTemplate = (data) => {
         const modalSuccess = document.createElement("div");
         modalSuccess.classList.add("modal-success");
         const modalSuccessContent =  `
-            <img src="assets/icons/close.svg" class="modal-success__close modal-trigger"/>
+            <img src="dist/assets/icons/close.svg" class="modal-success__close modal-trigger"/>
             <div class="modal-success__content">
                 <p class="modal-success__send">Votre message a bien été envoyé.</p>
                 <p class="modal-success__thanks">Merci !</p>
