@@ -772,16 +772,35 @@ a {
   margin: 0 5px 0 0;
 }
 .media__heart {
-  font-size: 22px;
-  font-size: 1.375rem;
-  color: #901C1C;
+  position: relative;
   cursor: pointer;
+  height: 25px;
+  width: 25px;
 }
-.media__heart:hover, .media__heart:focus {
-  color: #D3573C;
+.media__heart::before, .media__heart::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 25px;
+  width: 25px;
 }
-.media__heart.liked {
-  color: #000000;
+.media__heart::before {
+  opacity: 1;
+  transition: opacity 0.4s ease-out;
+  content: "";
+  background: url("https://api.iconify.design/mdi/heart-outline.svg?color=%23901c1c") no-repeat center center/contain;
+}
+.media__heart::after {
+  opacity: 0;
+  transition: opacity 0.4s ease-out;
+  content: "";
+  background: url("https://api.iconify.design/mdi/heart.svg?color=%23901c1c") no-repeat center center/contain;
+}
+.media .liked.media__heart::before {
+  opacity: 0;
+}
+.media .liked.media__heart::after {
+  opacity: 1;
 }
 
 .skeleton-card {

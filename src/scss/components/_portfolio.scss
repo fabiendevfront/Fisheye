@@ -100,17 +100,47 @@
     }
 
     &__heart {
-        @include mixins.font-size(22px);
-        color: variables.$primary-color1;
+        position: relative;
         cursor: pointer;
+        height: 25px;
+        width: 25px;
 
-        &:hover,
-        &:focus {
-            color: variables.$primary-color2;
+        &::before,
+        &::after {
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 25px;
+            width: 25px;
         }
 
-        &.liked {
-            color: variables.$black;
+        &::before {
+            opacity: 1;
+            transition: opacity 0.4s ease-out;
+            content: '';
+            background: url('https://api.iconify.design/mdi/heart-outline.svg?color=%23901c1c') no-repeat center center / contain;
+        }
+
+        &::after {
+            opacity: 0;
+            transition: opacity 0.4s ease-out;
+            content: '';
+            background: url('https://api.iconify.design/mdi/heart.svg?color=%23901c1c') no-repeat center center / contain;
+        }
+    }
+
+    .liked {
+
+        &.media__heart {
+
+            &::before {
+                opacity: 0;
+            }
+
+            &::after {
+                opacity: 1;
+            }
+
         }
     }
 }
