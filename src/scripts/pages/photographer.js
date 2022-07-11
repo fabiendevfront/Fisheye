@@ -4,7 +4,7 @@ import { getUrlID } from "../utils/tools.js";
 import { modalTools } from "../utils/modal.js";
 import { formTools } from "../utils/form.js";
 import { likesTools } from "../utils/likes.js";
-import { sortsTools } from "../utils/sorts.js";
+import { initSortByPopular, sortsTools2 } from "../utils/sorts.js";
 
 
 const getDataJSON = async () => {
@@ -29,19 +29,27 @@ const displayData = (photographer, portfolio) => {
 
     // Parcours le tableau et creer des cartes média avec le méthode createMediaCard() de la MediaFactory et l'ajoute au DOM
     const photographerPortfolio = document.querySelector(".photographer-portfolio");
-    portfolio.forEach((media) => {
+    const portfolioSortByPopular = initSortByPopular(portfolio);
+    portfolioSortByPopular.forEach((media) => {
         const medias = templateFactory(media, "portfolio");
         photographerPortfolio.appendChild(medias);
     });
 
+    // Tools
+    likesTools();
+};
+
+const sortData = (portfolio) => {
     // Creation des filtres avec le méthode createSortFilter() de SortTemplate et l'ajoute au DOM
     const sortMedias = document.querySelector(".media-sorting");
     const sortFilter = templateFactory(portfolio, "sortFilter");
     sortMedias.appendChild(sortFilter);
 
-    // Tools
-    likesTools();
-    sortsTools();
+    // Selection des éléments du DOM qui serviront pour le tri
+    const portfolioContainer = document.querySelector(".photographer-portfolio");
+    const portfolioCards = document.querySelectorAll(".media");
+    // Tools: Tri des éléments suivant les options
+    sortsTools2(portfolioContainer, portfolioCards);
 };
 
 // Création de la modale de contact
@@ -61,6 +69,7 @@ const init = async () => {
     const data = await getDataJSON();
     // Affiche le photographe et le portfolio
     displayData(data.photographer, data.portfolio);
+    sortData(data.portfolio);
     displayModal(data.photographer);
 };
 

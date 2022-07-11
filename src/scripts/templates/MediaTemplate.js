@@ -29,6 +29,9 @@ export const mediaTemplate = (data) => {
     const createMediaCard = () => {
         const mediaCard = document.createElement("article");
         mediaCard.classList.add("media");
+        mediaCard.setAttribute("data-likes", `${likes}`);
+        mediaCard.setAttribute("data-date", `${date}`);
+        mediaCard.setAttribute("data-title", `${title}`);
         const mediaInfos =  `
                 <a href="#" class="media__link" aria-label="Voir le media: ${title}">
                     ${mediaFile}
