@@ -9,7 +9,7 @@ export const mediaTemplate = (data) => {
 
     const typeMedia = (image) => {
         if (image !==  undefined) {
-            const mediaFile = `dist/assets/images/works/${name}/${image}`;
+            const mediaFile = `dist/assets/images/works/${name}/medium/${image}`;
             return `<div class="media__picture">
                         <img src="${mediaFile}" alt=""/>
                     </div>`;
