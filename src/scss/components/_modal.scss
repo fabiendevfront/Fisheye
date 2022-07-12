@@ -14,6 +14,7 @@
     padding: 38px 35px;
     display: flex;
     flex-direction: column;
+    box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
 
     &__close {
         margin-top: 10px;
@@ -35,7 +36,7 @@
         line-height: 1;
         font-weight: 400;
         text-align: start;
-        margin: 0 0 20px 0;
+        margin: 0 10px 20px 0;
     }
 }
 

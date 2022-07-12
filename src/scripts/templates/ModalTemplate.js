@@ -7,7 +7,7 @@ export const modalTemplate = (data) => {
         modal.setAttribute("role", "document");
         const modalContent =  `
             <header class="modal-form__header">
-                <h2 id="modalTitle" class="modal-form__title">Contactez-moi ${name}</h2>
+                <h1 id="modalTitle" class="modal-form__title">Contactez-moi ${name}</h1>
                 <img
                     src="dist/assets/icons/close.svg"
                     class="modal-form__close modal-trigger"
@@ -17,14 +17,13 @@ export const modalTemplate = (data) => {
             </header>
             <form class="form" action="#" method="post" novalidate>
                 <div class="form__group">
-                    <label for="first" class="form__label" tabindex="0">Prénom</label>
+                    <label for="first" class="form__label">Prénom</label>
                     <input
                         class="form__input form__field"
                         type="text"
                         id="first"
                         name="first"
                         aria-required="true"
-                        aria-describedby="errorfirst"
                     />
                 </div>
                 <div class="form__group">
@@ -35,7 +34,6 @@ export const modalTemplate = (data) => {
                         id="last"
                         name="last"
                         aria-required="true"
-                        aria-describedby="errorlast"
                     />
                 </div>
                 <div class="form__group">
@@ -46,7 +44,6 @@ export const modalTemplate = (data) => {
                         id="email"
                         name="email"
                         aria-required="true"
-                        aria-describedby="erroremail"
                     />
                 </div>
                 <div class="form__group">
@@ -56,7 +53,6 @@ export const modalTemplate = (data) => {
                         id="message"
                         name="message"
                         aria-required="true"
-                        aria-describedby="errormsg"
                     ></textarea>
                 </div>
                 <button type="submit" class="form__btn btn btn--form">Envoyer</button>

@@ -66,8 +66,9 @@ const validateField = (formField, error) => {
         if (!regexPatterns.name.test(formField.value)) {
             formField.classList.add("form__input--error");
             formField.previousElementSibling.insertAdjacentHTML("beforeend", `
-                <span id="error${formField.id}" class="form__error">${error.name}</span>`);
+                <span id="errorname" class="form__error">${error.name}</span>`);
             formField.setAttribute("aria-invalid", "true");
+            formField.setAttribute("aria-describedby", "errorname");
             return false;
         } else {
             return true;
@@ -77,6 +78,7 @@ const validateField = (formField, error) => {
             formField.classList.add("form__input--error");
             formField.previousElementSibling.insertAdjacentHTML("beforeend", `<span id="erroremail" class="form__error">${error.email}</span>`);
             formField.setAttribute("aria-invalid", "true");
+            formField.setAttribute("aria-describedby", "erroremail");
             return false;
         } else {
             return true;
@@ -86,6 +88,7 @@ const validateField = (formField, error) => {
             formField.classList.add("form__input--error");
             formField.previousElementSibling.insertAdjacentHTML("beforeend", `<span id="errormsg" class="form__error">${error.message}</span>`);
             formField.setAttribute("aria-invalid", "true");
+            formField.setAttribute("aria-describedby", "errormsg");
             return false;
         } else {
             return true;
@@ -97,6 +100,7 @@ const validateField = (formField, error) => {
 export const resetField = (field) => {
     let fieldLabel = field.previousElementSibling;
     field.classList.remove("form__input--error");
+    field.removeAttribute("aria-invalid", "true");
     while(fieldLabel.firstElementChild) {
         fieldLabel.removeChild(fieldLabel.firstElementChild);
     }
@@ -148,6 +152,6 @@ const formSubmit = (form, formFields) => {
         formFields.forEach((formField) => {
             resetField(formField);
         });
-        formValidation(formFields, errorMsg);
+        formValidation(formFields);
     });
 };
