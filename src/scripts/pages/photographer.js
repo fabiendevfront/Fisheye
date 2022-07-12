@@ -5,6 +5,7 @@ import { modalTools } from "../utils/modal.js";
 import { formTools } from "../utils/form.js";
 import { likesTools } from "../utils/likes.js";
 import { initSortByPopular, sortsTools2 } from "../utils/sorts.js";
+import { lightboxTools } from "../utils/lightbox.js";
 
 
 const getDataJSON = async () => {
@@ -48,6 +49,7 @@ const sortData = (portfolio) => {
     // Selection des éléments du DOM qui serviront pour le tri
     const portfolioContainer = document.querySelector(".photographer-portfolio");
     const portfolioCards = document.querySelectorAll(".media");
+
     // Tools: Tri des éléments suivant les options
     sortsTools2(portfolioContainer, portfolioCards);
 };
@@ -59,8 +61,20 @@ const displayModal = (photographer) => {
     contactModal.appendChild(modalForm);
     const modalSuccess = templateFactory(photographer, "modalSuccess");
     contactModal.appendChild(modalSuccess);
+
+    // Tools
     modalTools();
     formTools();
+};
+
+// Création de la lightbox
+const displayLightbox = (portfolio) => {
+    const mediaLightbox = document.querySelector(".media-lightbox");
+    const lightbox = templateFactory(portfolio, "lightbox");
+    mediaLightbox.appendChild(lightbox);
+
+    // Tools
+    lightboxTools();
 };
 
 // Fonction qui initialise l'App en récuprérant les données du JSON et en affichant les cards photographes
@@ -71,6 +85,7 @@ const init = async () => {
     displayData(data.photographer, data.portfolio);
     sortData(data.portfolio);
     displayModal(data.photographer);
+    displayLightbox(data.portfolio);
 };
 
 // Initialise l'App

@@ -3,6 +3,7 @@ import { mediaTemplate } from "../templates/MediaTemplate.js";
 import { skeletonTemplate } from "../templates/SkeletonTemplate.js";
 import { modalTemplate } from "../templates/ModalTemplate.js";
 import { sortTemplate } from "../templates/SortTemplate.js";
+import { lightboxTemplate } from "../templates/LightboxTemplate.js";
 
 export const templateFactory = (data, type) => {
     if (type === "photographerCard") {
@@ -19,6 +20,8 @@ export const templateFactory = (data, type) => {
         return modalTemplate().createModalSuccess();
     } else if (type === "sortFilter") {
         return sortTemplate().createSortFilter();
+    } else if (type === "lightbox") {
+        return lightboxTemplate().createLightbox();
     } else {
         throw "Unknown type format";
     }

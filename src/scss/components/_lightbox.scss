@@ -1,0 +1,23 @@
+@use '../abstracts/variables';
+@use '../abstracts/mixins';
+
+.lightbox {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background-color: grey;
+
+    &__close {
+        position: absolute;
+        top: 30px;
+        right: 0;
+    }
+
+    &__container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}

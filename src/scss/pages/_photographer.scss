@@ -47,3 +47,15 @@
         visibility: visible;
     }
 }
+
+.media-lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    z-index: 300;
+    padding: 10px 2%;
+}

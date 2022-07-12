@@ -9,22 +9,29 @@ export const mediaTemplate = (data) => {
 
     const typeMedia = (image) => {
         if (image !==  undefined) {
-            const mediaFile = `dist/assets/images/works/${name}/medium/${image}`;
-            return `<div class="media__picture">
-                        <img src="${mediaFile}" alt=""/>
-                    </div>`;
+            const mediumMedia = `dist/assets/images/works/${name}/medium/${image}`;
+            const originalMedialink = `dist/assets/images/works/${name}/original/${image}`;
+            return ` <a href="${originalMedialink}" class="media__link" aria-label="Voir le media: ${title}">
+                        <div class="media__picture">
+                            <img src="${mediumMedia}" alt=""/>
+                        </div>
+                        <i class="fas fa-search media__magnifier" aria-hidden="true"></i>
+                    </a>`;
         } else {
-            const mediaFile = `dist/assets/images/works/${name}/${video}`;
-            return `<div class="media__video">
-                        <video>
-                            <source src="${mediaFile}" type="video/mp4"></source>
-                            <p>Votre navigateur ne prend pas en charge les vidéos HTML5 en format mp4.</p>
-                        </video>
-                    </div>`;
+            const videoMedia = `dist/assets/images/works/${name}/${video}`;
+            return `<a href="${videoMedia}" class="media__link" aria-label="Voir le media: ${title}">
+                        <div class="media__video">
+                            <video>
+                                <source src="${videoMedia}" type="video/mp4"></source>
+                                <p>Votre navigateur ne prend pas en charge les vidéos HTML5 en format mp4.</p>
+                            </video>
+                        </div>
+                        <i class="fas fa-play media__magnifier" aria-hidden="true"></i>
+                    </a>`;
         }
     };
 
-    const mediaFile = typeMedia(image);
+    const mediaBox = typeMedia(image);
 
     const createMediaCard = () => {
         const mediaCard = document.createElement("article");
@@ -33,10 +40,7 @@ export const mediaTemplate = (data) => {
         mediaCard.setAttribute("data-date", `${date}`);
         mediaCard.setAttribute("data-title", `${title}`);
         const mediaInfos =  `
-                <a href="#" class="media__link" aria-label="Voir le media: ${title}">
-                    ${mediaFile}
-                    <i class="fas fa-search media__magnifier" aria-hidden="true"></i>
-                </a>
+                ${mediaBox}
                 <div class="media__infos">
                     <h2 class="media__title">${title}</h2>
                     <div class="media__content">
