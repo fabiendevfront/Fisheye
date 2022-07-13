@@ -36,19 +36,16 @@ export const mediaTemplate = (data) => {
     const createMediaCard = () => {
         const mediaCard = document.createElement("article");
         mediaCard.classList.add("media");
-        mediaCard.setAttribute("data-likes", `${likes}`);
-        mediaCard.setAttribute("data-date", `${date}`);
-        mediaCard.setAttribute("data-title", `${title}`);
-        const mediaInfos =  `
-                ${mediaBox}
-                <div class="media__infos">
-                    <h2 class="media__title">${title}</h2>
-                    <div class="media__content">
-                        <p class="media__likes" aria-label="Nombre de j'aime: ${likes}">${likes}</p>
-                        <i class="media__heart" aria-label="likes" role="button" tabindex="0"></i>
-                    </div>
-                </div>
-        `;
+        const mediaInfos =  `<input type="hidden" value="${id}" />
+                            ${mediaBox}
+                            <div class="media__infos">
+                                <h2 class="media__title">${title}</h2>
+                                <div class="media__content">
+                                    <p class="media__likes" aria-label="Nombre de j'aime: ${likes}">${likes}</p>
+                                    <i class="media__heart" aria-label="likes" role="button" tabindex="0"></i>
+                                </div>
+                            </div>`;
+
         mediaCard.innerHTML = mediaInfos;
         return mediaCard;
     };
