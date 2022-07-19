@@ -34,3 +34,13 @@
         opacity: 0.4;
     }
 }
+
+@keyframes lightboxIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}

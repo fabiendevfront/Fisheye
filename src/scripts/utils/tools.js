@@ -11,4 +11,9 @@ const getPhotographerName = () => {
     return photographerName;
 };
 
-export { getUrlID, getPhotographerName };
+function getExtension(link) {
+    const regex = /[^.]*$/i;
+    return link.match(regex)[0];
+}
+
+export { getUrlID, getPhotographerName, getExtension };

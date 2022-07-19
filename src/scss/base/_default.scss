@@ -9,7 +9,6 @@
     box-sizing: border-box;
 }
 
-*:focus,
 *:focus-visible {
     box-shadow: 0 0 0 5px variables.$primary-color2;
     outline: 0;

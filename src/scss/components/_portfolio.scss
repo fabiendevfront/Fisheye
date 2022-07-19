@@ -6,6 +6,21 @@
 
     &__link {
         position: relative;
+        display: block;
+        width: 100%;
+        height: 100%;
+        z-index: 5;
+
+        &::before {
+            position: absolute;
+            content: "";
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            z-index: 11;
+        }
 
         &:hover {
 
@@ -37,6 +52,7 @@
     }
 
     &__picture {
+        position: relative;
         width: 350px;
         height: 300px;
         border-radius: 5px;
@@ -50,6 +66,7 @@
     }
 
     &__video {
+        position: relative;
         width: 350px;
         height: 300px;
         border-radius: 5px;

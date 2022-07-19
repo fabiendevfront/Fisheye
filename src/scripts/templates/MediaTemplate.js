@@ -11,22 +11,22 @@ export const mediaTemplate = (data) => {
         if (image !==  undefined) {
             const mediumMedia = `dist/assets/images/works/${name}/medium/${image}`;
             const originalMedialink = `dist/assets/images/works/${name}/original/${image}`;
-            return ` <a href="${originalMedialink}" class="media__link" aria-label="Voir le media: ${title}">
+            return ` <a href="${originalMedialink}" class="media__link" aria-label="${title}">
                         <div class="media__picture">
                             <img src="${mediumMedia}" alt=""/>
+                            <i class="fas fa-search media__magnifier" aria-hidden="true"></i>
                         </div>
-                        <i class="fas fa-search media__magnifier" aria-hidden="true"></i>
                     </a>`;
         } else {
             const videoMedia = `dist/assets/images/works/${name}/${video}`;
-            return `<a href="${videoMedia}" class="media__link" aria-label="Voir le media: ${title}">
+            return `<a href="${videoMedia}" class="media__link" aria-label="${title}">
                         <div class="media__video">
                             <video>
                                 <source src="${videoMedia}" type="video/mp4"></source>
                                 <p>Votre navigateur ne prend pas en charge les vidéos HTML5 en format mp4.</p>
                             </video>
+                            <i class="fas fa-play media__magnifier" aria-hidden="true"></i>
                         </div>
-                        <i class="fas fa-play media__magnifier" aria-hidden="true"></i>
                     </a>`;
         }
     };

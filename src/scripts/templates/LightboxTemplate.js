@@ -5,16 +5,19 @@ export const lightboxTemplate = () => {
         lightbox.classList.add("lightbox");
         lightbox.setAttribute("role", "dialog");
         const lightboxContent =  `
-            <button class="lightbox__close lightbox-trigger" aria-label="Fermer la lightbox">Fermé</button>
-            <div class="lightbox__container">
-                <button class="lightbox__prev" aria-label="Media précédent"><-</button>
-                <div class="lightbox__content">
-                    <div class="lightbox__media"></div>
+            <button class="lightbox__close lightbox-trigger" aria-label="Fermer la lightbox">Fermer</button>
+                <button class="lightbox__prev" aria-label="Media précédent">Précédent</button>
+                <button class="lightbox__next" aria-label="Media suivant">Suivant</button>
+                <div class="lightbox__container">
+                    <div class="lightbox__media">
+                    <div>
                 </div>
-                <button class="lightbox__next" aria-label="Media suivant">-></button>
             </div>
         `;
         lightbox.innerHTML = lightboxContent;
+        lightbox.close = lightbox.querySelector(".lightbox__close");
+        lightbox.prev = lightbox.querySelector(".lightbox__prev");
+        lightbox.next = lightbox.querySelector(".lightbox__next");
         return lightbox;
     };
 

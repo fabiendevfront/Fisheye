@@ -21,7 +21,7 @@ export const templateFactory = (data, type) => {
     } else if (type === "sortFilter") {
         return sortTemplate().createSortFilter();
     } else if (type === "lightbox") {
-        return lightboxTemplate().createLightbox();
+        return lightboxTemplate(data).createLightbox();
     } else {
         throw "Unknown type format";
     }

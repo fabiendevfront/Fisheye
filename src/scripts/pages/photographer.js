@@ -5,7 +5,9 @@ import { modalTools } from "../utils/modal.js";
 import { formTools } from "../utils/form.js";
 import { likesTools } from "../utils/likes.js";
 import { sortDataByPopular, sortTools } from "../utils/sorts.js";
-import { lightboxTools } from "../utils/lightbox.js";
+import { Lightbox } from "../utils/lightbox.js";
+import { Picture, Video } from "../utils/Media.js";
+
 
 
 const getDataJSON = async () => {
@@ -64,13 +66,40 @@ const displayModal = (photographer) => {
 };
 
 // Création de la lightbox
-const displayLightbox = (portfolio) => {
-    const mediaLightbox = document.querySelector(".media-lightbox");
-    const lightbox = templateFactory(portfolio, "lightbox");
-    mediaLightbox.appendChild(lightbox);
+const displayLightbox = (portfolio, photographer) => {
+    const links = Array.from(document.querySelectorAll("a[href$=\".jpg\"], a[href$=\".mp4\"]"));
+    const gallery = links.map(link => link.getAttribute("href"));
 
-    // Tools
-    lightboxTools();
+    links.forEach(link => link.addEventListener("click", (event) => {
+        event.preventDefault();
+        const title = link.ariaLabel;
+        const lightbox = new Lightbox(event.currentTarget.getAttribute("href"), gallery, title);
+        lightbox.init();
+    }));
+
+    /*
+    * 2eme méthode
+    */
+    const photographerName = photographer.name.replace(/ /g,"-").toLowerCase();
+
+    let portfolioList = [];
+
+    // List des médias du photograhe
+    portfolio.forEach(media => {
+        if (media.image) {
+            portfolioList.push(new Picture(media, photographerName));
+        } else if (media.video) {
+            portfolioList.push(new Video(media, photographerName));
+        }
+    });
+    console.log(portfolioList);
+
+    portfolioList.forEach((media) => {
+        console.log(media);
+        links.forEach((link) => {
+            console.log(link);
+        });
+    });
 };
 
 // Fonction qui initialise l'App en récuprérant les données du JSON et en affichant les cards photographes
@@ -81,7 +110,7 @@ const init = async () => {
     displayData(data.photographer, data.portfolio);
     sortData(data.portfolio);
     displayModal(data.photographer);
-    displayLightbox(data.portfolio);
+    displayLightbox(data.portfolio, data.photographer);
 };
 
 // Initialise l'App

@@ -2,22 +2,94 @@
 @use '../abstracts/mixins';
 
 .lightbox {
+    position: fixed;
     width: 100%;
     height: 100%;
-    position: relative;
-    background-color: grey;
+    // background-color: rgba(0, 0, 0, .9);
 
     &__close {
-        position: absolute;
-        top: 30px;
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        border: none;
+        background: url(../../../dist/assets/icons/close-red.svg) center center / 100% 100%;
+        width: 42px;
+        height: 42px;
+        z-index: 160;
+    }
+
+    &__prev,
+    &__next {
+        position: fixed;
+        top: 50%;
+        margin-top: -14px;
+        border: none;
+        background: url(../../../dist/assets/icons/arrow.svg) center center / 60px 38px;
+        width: 60px;
+        height: 38px;
+        z-index: 150;
+    }
+
+    &__next {
         right: 0;
     }
 
+    &__prev {
+        right: auto;
+        left: 0;
+        transform: rotate(180deg);
+    }
+
+    button {
+        opacity: 1;
+        transition: opacity 0.3s;
+        cursor: pointer;
+        text-indent: -99999px;
+
+        &:hover {
+            opacity: 0.6;
+        }
+    }
+
     &__container {
-        width: 100%;
-        height: 100%;
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
+        padding: 50px 150px;
+        max-width: 100%;
+        max-height: 100%;
+        height: 100vh;
+        margin: 0 60px;
+    }
+
+    &__loader {
+        width: 60px;
+        height: 60px;
+        opacity: 0.8;
+        background: url(../../../dist/assets/icons/loader.svg) center center no-repeat;
+    }
+
+    &__media {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         align-items: center;
+        min-height: 90vh;
+
+        img,
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 5px;
+            box-shadow: rgb(0 0 0 / 50%) 0px 5px 12px;
+            animation: lightboxIn 0.5s ease-out;
+        }
+
+        h2 {
+            align-self: flex-start;
+            color: variables.$primary-color1;
+            @include mixins.font-size(24px);
+            font-weight: 400;
+        }
     }
 }
