@@ -1,6 +1,10 @@
 @use '../abstracts/variables';
 @use '../abstracts/mixins';
 
+/*********************/
+/* INSERT COMPONENT */
+/********************/
+
 .insert {
     display: flex;
     justify-content: space-between;

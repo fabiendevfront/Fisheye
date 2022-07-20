@@ -1,5 +1,12 @@
+/**
+ * Creates sort filter element.
+ * @returns {Function} - Create DOM Element
+ */
 export const sortTemplate = () => {
-
+    /**
+     * Sort template
+     * @returns {HTMLElement}
+     */
     const createSortFilter = () => {
         const sortFilter = document.createElement("form");
         sortFilter.classList.add("sort-filter");

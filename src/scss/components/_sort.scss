@@ -1,6 +1,10 @@
 @use '../abstracts/variables';
 @use '../abstracts/mixins';
 
+/*******************/
+/* SORT COMPONENT */
+/******************/
+
 .sort-filter {
     display: flex;
     align-items: center;

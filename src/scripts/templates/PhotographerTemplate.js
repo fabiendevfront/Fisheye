@@ -1,9 +1,18 @@
+/**
+ * Creates a photographer card or profil.
+ * @param {Object} - photographers data
+ * @returns {Function} - Create DOM Element
+ */
 export const photographerTemplate = (data) => {
     const { id, name, city, country, tagline, price, portrait } = data;
 
-    // Chemin de la photo du photographe
+    // Path of the photographer's photo
     const picture = `dist/assets/images/photographers/${portrait}`;
 
+    /**
+     * Photographer card template
+     * @returns {HTMLElement}
+     */
     const createPhotographerCard = () => {
         const photographerCard = document.createElement("article");
         photographerCard.classList.add("photographer");
@@ -24,6 +33,10 @@ export const photographerTemplate = (data) => {
         return photographerCard;
     };
 
+    /**
+     * Photographer profil template
+     * @returns {HTMLElement}
+     */
     const createPhotographerProfil = () => {
         const photographerProfil = document.createElement("div");
         photographerProfil.classList.add("profil");

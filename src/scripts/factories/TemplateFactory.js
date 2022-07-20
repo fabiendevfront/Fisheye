@@ -5,6 +5,13 @@ import { modalTemplate } from "../templates/ModalTemplate.js";
 import { sortTemplate } from "../templates/SortTemplate.js";
 import { lightboxTemplate } from "../templates/LightboxTemplate.js";
 
+
+/**
+ * It takes a data object and a type string as arguments and returns a template.
+ * @param {Object} - data
+ * @param {String} - type
+ * @returns {HtmlElement} - Return HTML Element of the type select
+ */
 export const templateFactory = (data, type) => {
     if (type === "photographerCard") {
         return photographerTemplate(data).createPhotographerCard();

@@ -1,10 +1,6 @@
-/*
-* Display and hide modal
-*/
-
-/* ======================
+/* ==========================================================
    Modal tools for photographer page after create DOM of modal
-   ====================== */
+   ========================================================== */
 
 export const modalTools = () => {
     const btnContact = document.querySelector(".profil__btn");
@@ -24,9 +20,9 @@ let modalFocusElements = [];
 const modalSuccessFocusSelector = "img.modal-success__close, button.modal-success__btn";
 let modalSuccessFocusElements = [];
 
-/* ======================
-   Display and hide modal
-   ====================== */
+/* ==========
+   Controller
+   ========== */
 
 // Add or remove class active that display the modal and go to top of page.
 const toggleModal = (event) => {
@@ -57,7 +53,7 @@ const toggleModal = (event) => {
     }
 };
 
-// Garder le focus dans la modale
+// Keep the focus in the modal
 const focusInModal = (event) => {
     event.preventDefault();
     let indexCurrentFocus = modalFocusElements.findIndex((index) => index === modalItem.querySelector(":focus"));
@@ -75,7 +71,7 @@ const focusInModal = (event) => {
     modalFocusElements[indexCurrentFocus].focus();
 };
 
-// Garder le focus dans la modale de succès
+// Keep the focus in the success modal
 const focusInModalSuccess = (event) => {
     event.preventDefault();
     const modalSuccess = document.querySelector(".modal-success");
@@ -114,8 +110,8 @@ export const displaySuccessModal = () => {
    Events
    ====== */
 
-// Hide modal when clicking on "echap key" with "toggleModal" function
-// Tab in contact modal and capture the focus
+/* Hide modal when clicking on "echap key" with "toggleModal" function
+Tab in contact modal and capture the focus */
 const documentEvents = () => {
     const modalSuccess = document.querySelector(".modal-success");
 
@@ -127,10 +123,8 @@ const documentEvents = () => {
         if (event.code === "Tab" && modalItem.matches(".active")) {
 
             if (modalSuccess.style.display === "flex") {
-                console.log("tab dans la modale de success");
                 focusInModalSuccess(event);
             } else {
-                console.log("tab dans la modale de contact");
                 focusInModal(event);
             }
         }
@@ -138,7 +132,7 @@ const documentEvents = () => {
 };
 
 
-// Délégation d'évènements au click et au clavier pour les triggers
+// Delegation of events to click and keyboard for triggers
 const addModalEventDelegation = () => {
     const contactModal = document.querySelector(".contact-modal");
 
@@ -156,7 +150,6 @@ const addModalEventDelegation = () => {
         const initElem = event.target;
 
         if (event.code === "Enter" && initElem.matches(".modal-trigger")) {
-            console.log(initElem);
             toggleModal(event);
         } else {
             return;

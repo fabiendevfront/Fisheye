@@ -2,15 +2,11 @@ import { templateFactory } from "../factories/TemplateFactory.js";
 import { mediasPhotographers } from "../pages/photographer";
 import { Picture, Video } from "./Media.js";
 
-/*
-* Première méthode avec une class
-*/
-
+// Class Lightbox controller : init lightbox, load media, events on click and keyboard
 export class Lightbox {
-
     /**
-     * @param {id} - The id of the open media
-     * @param {photographerName} - The name of current photographer
+     * @param {Number} - The id of the open media
+     * @param {String} - The name of current photographer
      */
     constructor(id, photographerName) {
         this.mediasPhotographers = mediasPhotographers;
@@ -37,7 +33,7 @@ export class Lightbox {
 
     /**
      * Define if the media is a photo or a video and load it
-     * @param {currentMedia} - The current media to load
+     * @param {Object} - The current media to load
      */
     loadMedia (currentMedia) {
 
@@ -92,7 +88,7 @@ export class Lightbox {
 
     /**
      * Get the current media of the photographer with the given id.
-     * @param {id} - the id of the photographer
+     * @param {Number} - id of the photographer
      * @returns The current media object.
      */
     getCurrentMedia (id) {
@@ -102,7 +98,7 @@ export class Lightbox {
 
     /**
      * Return the index of the current media in the mediasPhotographers array.
-     * @param id - the id of the media
+     * @param {Number} - id of the media
      * @returns The index of the media in the array.
      */
     getIndexCurrentMedia (id) {

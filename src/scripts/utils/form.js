@@ -1,9 +1,5 @@
 import { displaySuccessModal } from "./modal.js";
 
-/*
-* Contact form
-*/
-
 /* =========================================================
    Form tools for photographer page after create DOM of form
    ========================================================= */
@@ -57,10 +53,11 @@ const regexPatterns = {
     message: /^[\p{L}\s\d,;._-]{2,500}$/ui,
 };
 
-/* =============================================
-    Functions for check if inputs values is valid
-    ============================================= */
+/* ==========
+   Controller
+   ========== */
 
+// Check if inputs values is valid
 const validateField = (formField, error) => {
     if (formField.type === "text") {
         if (!regexPatterns.name.test(formField.value)) {
@@ -96,7 +93,7 @@ const validateField = (formField, error) => {
     }
 };
 
-// Reset field : remove error class and span with error message
+// Remove error class and span with error message
 export const resetField = (field) => {
     let fieldLabel = field.previousElementSibling;
     field.classList.remove("form__input--error");
@@ -142,9 +139,9 @@ const formValidation = (formFields) => {
 };
 
 /* Event on form submit:
-Disable default comportement of submit
-Reset all fields before new submit
-Launch form validation function
+* Disable default comportement of submit
+* Reset all fields before new submit
+* Launch form validation function
 */
 const formSubmit = (form, formFields) => {
     form.addEventListener("submit", (event) => {

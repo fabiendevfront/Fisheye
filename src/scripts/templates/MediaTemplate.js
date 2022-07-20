@@ -1,12 +1,17 @@
 import { getPhotographerName } from "../utils/tools.js";
 
+/**
+ * Creates a media card with a picture or a video.
+ * @param {Object} - portfolio data
+ * @returns {Function} - Create DOM Element
+ */
 export const mediaTemplate = (data) => {
-    // eslint-disable-next-line no-unused-vars
-    const { date, id, image, video, likes, photographerId, price, title } = data;
+    const { id, image, video, likes, title } = data;
 
-    // Utilise la fonction getPhotographerName pour récupèrer le nom du photographe et le formate correctement
+    // Retrieve and format the photographer's name
     const name = getPhotographerName();
 
+    // Define the media type and create the DOM
     const typeMedia = (image) => {
         if (image !==  undefined) {
             const mediumMedia = `dist/assets/images/works/${name}/medium/${image}`;
@@ -33,6 +38,10 @@ export const mediaTemplate = (data) => {
 
     const mediaBox = typeMedia(image);
 
+    /**
+     * Portfolio card template
+     * @returns {HTMLElement}
+     */
     const createMediaCard = () => {
         const mediaCard = document.createElement("article");
         mediaCard.classList.add("media");

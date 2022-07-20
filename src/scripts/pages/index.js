@@ -1,65 +1,65 @@
 import { PhotographerApi } from "../api/Api.js";
 import { templateFactory } from "../factories/TemplateFactory.js";
 
-// Récupère les données des photographes dans le fichier JSON avec l'API
+// Get the data from the photographers in the JSON file with the API
 const getDataJSON = async () => {
-    // Chemin du fichier JSON
+    // JSON file path
     const JSON = "../../src/data/photographers.json";
-    // Instanciation de la class PhotographerApi avec le chemin du fichier JSON
+    // Instantiation of the PhotographerApi class with the JSON file path
     const data = new PhotographerApi(JSON);
-    // Récupération des données des photographes
+    // Retrieves data from photographers
     const photographers = await data.getPhotographersData();
     return photographers;
 };
 
-// Affiche le skeleton loader pour simuler les cards des photographes
+// Display the skeleton loader
 const displaySkeleton = async (photographers) => {
-    // Noeud HTML dans lequel on insere les cards du skeleton
+    // HTML node in which the skeleton cards are inserted
     const photographersSection = document.querySelector(".photographer_section");
-    // Parcours les photographes
+    // Browse the photographers
     await photographers.forEach((photographer) => {
-        // Creer une card du skeleton par photographe avec la factory function
+        // Create a skeleton card by photographer
         const skeletonCard = templateFactory(photographer, "skeletonCard");
-        // Ajoute la card du skeleton au DOM
+        // Add the skeleton card to the DOM
         photographersSection.appendChild(skeletonCard);
     });
 };
 
-// Supprime les cards du skeleton
+// Remove the skeleton cards
 const removeSkeleton = async () => {
-    // Récupère les cards du skeleton
+    // Recover the skeleton cards
     const listSkeleton = document.querySelectorAll(".skeleton-card");
-    // Parcours les cards du skeleton
+    // Browse through the skeleton cards
     listSkeleton.forEach((skeleton) => {
-        // Supprime la card du skeleton parcourue
+        // Deletes the skeleton card that has been traveled
         skeleton.remove();
     });
 };
 
-// Affiche les cards des photographes
+// Display the cards of the photographers
 const displayPhotographers = async (photographers) => {
-    // Noeud HTML dans lequel on insere les cards des photographes
+    // HTML node in which we insert the cards of the photographers
     const photographersSection = document.querySelector(".photographer_section");
-    // Parcours les photographes
+    // Browse the photographers
     await photographers.forEach((photographer) => {
-        // Creer une card par photographe avec toutes ses infos avec la factory function
+        // Create a card by photographer with all his info
         const photographerModel = templateFactory(photographer, "photographerCard");
-        // Ajoute la card du photographe au DOM
+        // Add the photographer's card to the DOM
         photographersSection.appendChild(photographerModel);
     });
 };
 
-// Fonction qui initialise l'App en affichant les cards photographes
+// Init App by displaying the photographer cards
 const init = async (data) => {
     displayPhotographers(data);
 };
 
-/* Event au chargement de la page:
-* Récupère les données
-* Affiche le skeleton
-* Simulation d'un délai de chargement des données d'une API lente
-* Supprime le skeleton
-* Initialise l'App
+/* Event at page load:
+* Retrieves data
+* Displays the skeleton
+* Simulation of a slow API data loading delay
+* Remove the skeleton
+* Init App
 */
 window.addEventListener("load", async () => {
     const photographers = await getDataJSON();

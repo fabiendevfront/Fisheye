@@ -1,8 +1,19 @@
+/* ==========================================================
+   Sort tools for photographer page after create DOM of sort
+   ========================================================== */
+
 export const sortTools = (data) => {
     sortPortfolio(data);
 };
 
-// Tri les données du portfolio suivant l'option du select choisie
+/* ==========
+   Controller
+   ========== */
+
+/**
+ * Sort the portfolio data according to the selected option
+ * @param {Array.<Object>} - portfolio data
+ */
 const sortPortfolio = (data) => {
     const sortSelect = document.querySelector(".sort-filter__select");
     let dataResults = [];
@@ -21,19 +32,24 @@ const sortPortfolio = (data) => {
     });
 };
 
-// Tri les données par popularité
+/**
+ * Sort the data by the number of likes.
+ * @param {Array.<Object>} - portfolio data
+ * @returns {Array.<Object>} - The sorted array.
+ */
 export const sortDataByPopular = (datas) => {
-    console.log("Tri par popularitée");
     return datas.sort((a, b) => {
-        // 'b' sera comparé à 'a', qui sera l'élément suivant
         // b > a
         return b.likes - a.likes;
     });
 };
 
-// Tri les données par date
+/**
+ * Sort the data by the date.
+ * @param {Array.<Object>} - portfolio data
+ * @returns {Array.<Object>} - The sorted array.
+ */
 const sortDataByDate = (datas) => {
-    console.log("Tri par date");
     return datas.slice().sort((a, b) => {
         // a < b
         const dateA = new Date(a.date);
@@ -42,26 +58,29 @@ const sortDataByDate = (datas) => {
     });
 };
 
-// Tri les données par titre
+/**
+ * Sort the data by the title.
+ * @param {Array.<Object>} - portfolio data
+ * @returns {Array.<Object>} - The sorted array.
+ */
 const sortDataByTitle = (datas) => {
-    console.log("Tri par titre");
     return datas.sort((a, b) => {
         return a.title.localeCompare(b.title);
     });
 };
 
+/**
+ * Reorganize the DOM after sorting the portfolio
+ * @param {Array.<Object>} - The sorted array
+ */
 const newMediaReorganization = (mediasSortBy) => {
     const medias = document.querySelectorAll(".media");
     const photographerPortfolio = document.querySelector(".photographer-portfolio");
 
     mediasSortBy.forEach((m) => {
-        console.log(m.id);
         medias.forEach((node) => {
             const id = node.querySelector("input").value;
-            console.log(id);
-            console.log(m.id === parseInt(id));
             if (m.id === parseInt(id)) {
-                console.log("Elément ajouté au Dom");
                 photographerPortfolio.appendChild(node);
             }
         });

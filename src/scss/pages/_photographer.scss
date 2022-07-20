@@ -1,6 +1,10 @@
 @use '../abstracts/variables';
 @use '../abstracts/mixins';
 
+/****************************/
+/* PHOTOGRAPHER PAGE STYLE */
+/***************************/
+
 .photographer-header {
     background-color: variables.$secondary-color2;
     min-height: 300px;

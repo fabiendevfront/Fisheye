@@ -1,5 +1,13 @@
+/**
+ * Creates a lightbox element and returns it.
+ * @returns {Function} - Create DOM Element
+ */
 export const lightboxTemplate = () => {
 
+    /**
+     * LightBox template
+     * @returns {HTMLElement}
+     */
     const createLightbox = () => {
         const lightbox = document.createElement("div");
         lightbox.classList.add("lightbox");

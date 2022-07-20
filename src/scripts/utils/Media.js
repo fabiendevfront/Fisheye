@@ -1,15 +1,20 @@
+// Create media object
 export class Media {
-
+    /**
+     * @param {Object} - data
+     */
     constructor (data) {
         this.id = data.id;
-        this.photographerId = data.photographerId;
-        this.date = new Date(data.date);
         this.title = data.title;
     }
 }
 
+// Create picture object
 export class Picture extends Media {
-
+    /**
+     * @param {Object} - current media
+     * @param {String} - photographer
+     */
     constructor (data, photographer) {
         super(data);
         this.type = "picture";
@@ -20,8 +25,12 @@ export class Picture extends Media {
     }
 }
 
+// Create video object
 export class Video extends Media {
-
+    /**
+     * @param {Object} - current media
+     * @param {String} - photographer
+     */
     constructor (data, photographer) {
         super(data);
         this.type = "video";

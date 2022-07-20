@@ -1,5 +1,12 @@
+/**
+ * Creates skeleton element.
+ * @returns {Function} - Create DOM Element
+ */
 export const skeletonTemplate = () => {
-
+    /**
+     * Skeleton template
+     * @returns {HTMLElement}
+     */
     const createSkeletonCard = () => {
         const skeletonCard = document.createElement("article");
         skeletonCard.classList.add("skeleton-card");

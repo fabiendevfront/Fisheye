@@ -1,19 +1,16 @@
-// Récupère l'id d'une URL et le transforme en nombre
-const getUrlID = (urlID) => {
+/**
+ * Get the id of a URL and transform it into a number.
+ * @param {string} - urlID
+ * @returns the photographerID.
+ */
+export const getUrlID = (urlID) => {
     const params = new URLSearchParams(urlID);
     const photographerID = parseInt(params.get("id"));
     return photographerID;
 };
 
-// Recupère le nom du photographe dans le DOM, supprime les espaces si il y en a, met toutes les lettres en minuscule
-const getPhotographerName = () => {
+// Retrieves the name of the photographer in the DOM, replaces spaces with dashes, puts all letters in lower case
+export const getPhotographerName = () => {
     const photographerName = document.querySelector(".profil__title").textContent.replace(/ /g,"-").toLowerCase();
     return photographerName;
 };
-
-function getExtension(link) {
-    const regex = /[^.]*$/i;
-    return link.match(regex)[0];
-}
-
-export { getUrlID, getPhotographerName, getExtension };

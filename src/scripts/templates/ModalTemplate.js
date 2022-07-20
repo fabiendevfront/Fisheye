@@ -1,5 +1,12 @@
+/**
+ * Creates modal and form element.
+ * @returns {Function} - Create DOM Element
+ */
 export const modalTemplate = (data) => {
-
+    /**
+     * Modal and form template
+     * @returns {HTMLElement}
+     */
     const createModalForm = () => {
         const name = data.name;
         const modal = document.createElement("div");
@@ -62,6 +69,10 @@ export const modalTemplate = (data) => {
         return modal;
     };
 
+    /**
+     * Success modal template
+     * @returns {HTMLElement}
+     */
     const createModalSuccess = () => {
         const modalSuccess = document.createElement("div");
         modalSuccess.classList.add("modal-success");
