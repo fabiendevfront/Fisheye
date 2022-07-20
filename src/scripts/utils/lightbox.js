@@ -1,5 +1,6 @@
 import { templateFactory } from "../factories/TemplateFactory.js";
-import { getExtension } from "../utils/tools.js";
+import { mediasPhotographers } from "../pages/photographer";
+import { Picture, Video } from "./Media.js";
 
 /*
 * Première méthode avec une class
@@ -7,20 +8,26 @@ import { getExtension } from "../utils/tools.js";
 
 export class Lightbox {
 
-    constructor(url, gallery, title) {
-        this.url = url;
-        this.gallery = gallery;
-        this.title = title;
-        console.log(this.title);
+    /**
+     * @param {id} - The id of the open media
+     * @param {photographerName} - The name of current photographer
+     */
+    constructor(id, photographerName) {
+        this.mediasPhotographers = mediasPhotographers;
+        this.photographer = photographerName;
+        this.id = parseInt(id);
+        this.currentMedia = null;
         this.template = templateFactory(this.url, "lightbox");
         this.containerDOM = document.querySelector(".media-lightbox");
         this.onKeyDown = this.onKeyDown.bind(this);
     }
 
+    // Init lightbox
     init () {
         this.containerDOM.classList.remove("fadeOut");
         this.containerDOM.style.display ="block";
-        this.loadMedia(this.url, this.title);
+        this.currentMedia = this.getCurrentMedia(this.id);
+        this.loadMedia(this.currentMedia);
         this.containerDOM.appendChild(this.template);
         document.addEventListener("keydown", this.onKeyDown);
         this.template.close.addEventListener("click", this.close.bind(this));
@@ -28,11 +35,15 @@ export class Lightbox {
         this.template.next.addEventListener("click", this.next.bind(this));
     }
 
-    // Défini si le média est une photo ou un vidéo et le charge
-    loadMedia (url, title) {
-        const mediaExtension = getExtension(url);
-        if (mediaExtension === "jpg") {
-            this.url = null;
+    /**
+     * Define if the media is a photo or a video and load it
+     * @param {currentMedia} - The current media to load
+     */
+    loadMedia (currentMedia) {
+
+        if (currentMedia.image) {
+            this.id = null;
+            const media = new Picture(currentMedia, this.photographer);
             const image = new Image();
             const containerIMG = this.template.querySelector(".lightbox__media");
             const loader = document.createElement("div");
@@ -42,57 +53,68 @@ export class Lightbox {
             const titleMedia = document.createElement("h2");
             titleMedia.classList.add("lightbox__title");
             titleMedia.setAttribute("tabindex", 0);
-            titleMedia.innerHTML = title;
+            titleMedia.innerHTML = media.title;
             image.onload = () => {
                 containerIMG.removeChild(loader);
                 containerIMG.appendChild(image);
                 containerIMG.appendChild(titleMedia);
-                this.url = url;
+                this.id = media.id;
             };
-            image.src = url;
-        } else if (mediaExtension === "mp4") {
-            this.url = null;
+            image.src = media.imagePath;
+        } else if (currentMedia.video) {
+            this.id = null;
+            const media = new Video(currentMedia, this.photographer);
             const video = document.createElement("video");
             video.setAttribute("autoplay", "true");
             video.setAttribute("controls", "");
             const source = document.createElement("source");
-            source.setAttribute("src", url);
+            source.setAttribute("src", media.videoPath);
             source.setAttribute("type", "video/mp4");
             const error = document.createElement("span");
             error.textContent = "Désolé, votre navigateur ne prend pas en charge les videos HTML5";
             const containerVID = this.template.querySelector(".lightbox__media");
             containerVID.innerHTML = "";
+            const titleMedia = document.createElement("h2");
+            titleMedia.classList.add("lightbox__title");
+            titleMedia.setAttribute("tabindex", 0);
+            titleMedia.innerHTML = media.title;
             containerVID.appendChild(video);
             video.appendChild(source);
             source.appendChild(error);
-            this.url = url;
+            containerVID.appendChild(titleMedia);
+            this.id = media.id;
         }
     }
 
     /*
-    * Utils
+    * Methods
     */
 
-    getIndexCurrentMedia (url) {
-        return this.gallery.findIndex((image) => image === url);
+    /**
+     * Get the current media of the photographer with the given id.
+     * @param {id} - the id of the photographer
+     * @returns The current media object.
+     */
+    getCurrentMedia (id) {
+        const indexCurrentMedia = this.getIndexCurrentMedia(id);
+        return this.mediasPhotographers[indexCurrentMedia];
     }
 
-    getMediaInfos () {
-        let medias = [];
-        this.mediaInfos.forEach((media) => {
-            medias.push(this.factoryMedia(media));
-        });
-        return medias;
+    /**
+     * Return the index of the current media in the mediasPhotographers array.
+     * @param id - the id of the media
+     * @returns The index of the media in the array.
+     */
+    getIndexCurrentMedia (id) {
+        return this.mediasPhotographers.findIndex((index) => parseInt(index.id) === id);
     }
 
-    factoryMedia (media) {
-        let mediaAttr = {};
-        mediaAttr.url = media.getAttribute("href");
-        mediaAttr.title = (media.getAttribute("aria-label"));
-        return mediaAttr;
-    }
-
-    // Garder le focus dans la lightbox
+    /**
+     * If the user presses the tab key, the focus will move to the next focusable element in the
+     * lightbox, and if the user presses the shift + tab keys, the focus will move to the previous
+     * focusable element in the lightbox.
+     * @param {KeyboardEvent} - event
+     */
     focusInLightbox (event) {
         event.preventDefault();
         const lightboxFocusSelector = "button";
@@ -113,11 +135,12 @@ export class Lightbox {
         lightboxFocusElements[indexCurrentFocus].focus();
     }
 
-    /*
-    * Events
-    */
-
-    // Events à la pression de touche du clavier
+    /**
+     * If the user presses the escape key, the lightbox closes. If the user presses the left arrow key,
+     * the previous image is displayed. If the user presses the right arrow key, the next image is
+     * displayed. If the user presses the tab key, the focus is set to the lightbox.
+     * @param {MouseEvent|KeyboardEvent} - event
+     */
     onKeyDown (event) {
         if (event.code === "Escape") {
             this.close(event);
@@ -130,8 +153,11 @@ export class Lightbox {
         }
     }
 
-    /* Fermeture de la lightbox: Transition d'opacité, délai de fermeture, cache le container / supprime la lightbox,
-    suppression du listener */
+    /**
+     * Lightbox close: It adds a class to the containerDOM, then after 500ms, it removes the template from the
+     * containerDOM and hides the containerDOM.
+     * @param {MouseEvent|KeyboardEvent} - event
+     */
     close (event) {
         event.preventDefault();
         this.containerDOM.classList.add("fadeOut");
@@ -142,291 +168,29 @@ export class Lightbox {
         document.removeEventListener("keydown", this.onKeyDown);
     }
 
+    /**
+     * Go to previous media
+     * @param {MouseEvent|KeyboardEvent} - event
+     */
     prev (event) {
         event.preventDefault();
-        let indexImage = this.getIndexCurrentMedia(this.url);
+        let indexImage = this.getIndexCurrentMedia(this.id);
         if (indexImage === 0) {
-            indexImage = this.gallery.length;
+            indexImage = this.mediasPhotographers.length;
         }
-        this.loadMedia(this.gallery[indexImage - 1]);
+        this.loadMedia(this.mediasPhotographers[indexImage - 1]);
     }
 
+    /**
+     * Go to next media
+     * @param {MouseEvent|KeyboardEvent} - event
+     */
     next (event) {
         event.preventDefault();
-        let indexImage = this.getIndexCurrentMedia(this.url);
-        if (indexImage === this.gallery.length - 1) {
+        let indexImage = this.getIndexCurrentMedia(this.id);
+        if (indexImage === this.mediasPhotographers.length - 1) {
             indexImage = -1;
         }
-        this.loadMedia(this.gallery[indexImage + 1]);
+        this.loadMedia(this.mediasPhotographers[indexImage + 1]);
     }
 }
-
-/*
-* Deuxième méthode
-*/
-
-// // Dom selection
-// const mediaLightbox = document.querySelector(".media-lightbox");
-
-// // Initialisation de la lightbox
-// const initLightbox = () => {
-//     const links = Array.from(document.querySelectorAll("a[href$=\".jpg\"], a[href$=\".mp4\"]"));
-//     const gallery = links.map(link => link.getAttribute("href"));
-//     links.forEach(link => link.addEventListener("click", (event) => {
-//         event.preventDefault();
-//         const urlImage = link.getAttribute("href");
-//         createLightbox(urlImage, gallery);
-//     }));
-// };
-
-// // Affiche le container et creer la lightbox
-// const createLightbox = (urlImage, gallery) => {
-//     mediaLightbox.classList.remove("fadeOut");
-//     mediaLightbox.style.display ="block";
-//     const lightboxTemplate = templateFactory(urlImage, "lightbox");
-//     mediaLightbox.appendChild(lightboxTemplate);
-//     loadMedia(urlImage);
-//     addTriggersEventDelegation();
-//     browseGallery(urlImage, gallery);
-//     document.addEventListener("keydown", onKeyDown);
-// };
-
-// // Défini si le média est une photo ou un vidéo et le charge
-// const loadMedia = (link) => {
-//     const mediaExtension = getExtension(link);
-
-//     if (mediaExtension === "jpg") {
-//         const image = new Image();
-//         image.src = link;
-//         const container = document.querySelector(".lightbox__media");
-//         const loader = document.createElement("div");
-//         loader.classList.add("lightbox__loader");
-//         container.innerHTML = "";
-//         container.appendChild(loader);
-//         image.onload = () => {
-//             container.removeChild(loader);
-//             container.appendChild(image);
-//         };
-//     } else if (mediaExtension === "mp4") {
-//         const video = document.createElement("video");
-//         video.setAttribute("autoplay", "true");
-//         video.setAttribute("controls", "");
-//         const source = document.createElement("source");
-//         source.setAttribute("src", link);
-//         source.setAttribute("type", "video/mp4");
-//         const error = document.createElement("span");
-//         error.textContent = "Désolé, votre navigateur ne prend pas en charge les videos HTML5";
-//         const container = document.querySelector(".lightbox__media");
-//         container.innerHTML = "";
-//         container.appendChild(video);
-//         video.appendChild(source);
-//         source.appendChild(error);
-//     }
-// };
-
-// const browseGallery = (urlImage, gallery) => {
-//     document.querySelector(".lightbox__prev").addEventListener("click", () => {
-//         console.log("prev");
-//         console.log(urlImage);
-//         console.log(gallery);
-//         let indexImage = gallery.findIndex((image) => image === urlImage);
-//         console.log(indexImage);
-//         if (indexImage === 0) {
-//             indexImage = gallery.length;
-//         }
-//         loadMedia(gallery[indexImage - 1]);
-//     });
-//     document.querySelector(".lightbox__next").addEventListener("click", () => {
-//         console.log("next");
-//         console.log(urlImage);
-//         console.log(gallery);
-//         let indexImage = gallery.findIndex((image) => image === urlImage);
-//         console.log(indexImage);
-//         if (indexImage === gallery.length -1) {
-//             indexImage = -1;
-//         }
-//         loadMedia(gallery[indexImage + 1]);
-//     });
-// };
-
-// // Cache le container et supprime la lightbox
-// const removeLightbox = (lightbox) => {
-//     mediaLightbox.classList.add("fadeOut");
-//     window.setTimeout(() => {
-//         mediaLightbox.style.display = "none";
-//         mediaLightbox.removeChild(lightbox);
-//     }, 500);
-//     document.removeEventListener("keydown", onKeyDown);
-// };
-
-
-
-// // Garder le focus dans la lightbox
-// const focusInLightbox = (event) => {
-//     event.preventDefault();
-//     const lightboxFocusSelector = "button";
-//     let lightboxFocusElements = [];
-//     lightboxFocusElements = Array.from(mediaLightbox.querySelectorAll(lightboxFocusSelector));
-//     let indexCurrentFocus = lightboxFocusElements.findIndex((index) => index === mediaLightbox.querySelector(":focus"));
-//     if (!event.shiftKey) {
-//         indexCurrentFocus++;
-//     } else {
-//         indexCurrentFocus--;
-//     }
-//     if (indexCurrentFocus >= lightboxFocusElements.length) {
-//         indexCurrentFocus = 0;
-//     }
-//     if (indexCurrentFocus < 0) {
-//         indexCurrentFocus = lightboxFocusElements.length -1;
-//     }
-//     lightboxFocusElements[indexCurrentFocus].focus();
-// };
-
-// // Les intéractions clavier sur le document une fois que la lightbox est affichée
-// const onKeyDown = (event) => {
-//     const lightbox = document.querySelector(".lightbox");
-
-//     if (event.code === "Escape") {
-//         removeLightbox(lightbox);
-//     }
-
-//     if (event.code === "Tab") {
-//         focusInLightbox(event);
-//     }
-// };
-
-
-// /*
-// * Events
-// */
-
-// // Creer une délégation d'évènements pour la fermeture de le lightbox
-// const addTriggersEventDelegation = () => {
-//     const lightbox = document.querySelector(".lightbox");
-//     if (mediaLightbox.style.display === "block") {
-//         lightbox.addEventListener("click", (event) => {
-//             const initElem = event.target;
-
-//             if (initElem.matches(".lightbox-trigger")) {
-//                 removeLightbox(lightbox);
-//             } else {
-//                 return;
-//             }
-//         });
-
-//         lightbox.addEventListener("keydown", (event) => {
-//             const initElem = event.target;
-
-//             if (event.code === "Enter" && initElem.matches(".lightbox-trigger")) {
-//                 removeLightbox(lightbox);
-//             } else {
-//                 return;
-//             }
-//         });
-//     }
-// };
-
-
-
-
-
-/*
-* Troisième méthode (avec un système similaire à la modale contact)
-*/
-
-// // Ouvrir ou fermer la lightbox
-// const toggleLightbox = () => {
-//     mediaLightbox.classList.toggle("active");
-
-//     if (mediaLightbox.matches(".active")) {
-//         mediaLightbox.style.animation = "open-modal 0.8s";
-//         mediaLightbox.style.display = "block";
-//         lightboxFocusElements = Array.from(mediaLightbox.querySelectorAll(lightboxFocusSelector));
-//         lightboxFocusElements.forEach((elem) => {
-//             elem.setAttribute("tabindex", "-1");
-//         });
-//         mediaLightbox.setAttribute("aria-hidden", "false");
-//         mediaLightbox.setAttribute("aria-modal", "true");
-//         mediaLightbox.setAttribute("tabindex", "0");
-//         main.setAttribute("aria-hidden", "true");
-//     } else {
-//         mediaLightbox.style.display = "none";
-//         mediaLightbox.style.animation = "close-modal 0.8s";
-//         mediaLightbox.setAttribute("aria-hidden", "true");
-//         mediaLightbox.setAttribute("aria-modal", "false");
-//         main.setAttribute("aria-hidden", "false");
-//     }
-// };
-
-// // Garder le focus dans la modale
-// const focusInLightbox = (event) => {
-//     event.preventDefault();
-//     let indexCurrentFocus = lightboxFocusElements.findIndex((index) => index === mediaLightbox.querySelector(":focus"));
-//     if (!event.shiftKey) {
-//         indexCurrentFocus++;
-//     } else {
-//         indexCurrentFocus--;
-//     }
-//     if (indexCurrentFocus >= lightboxFocusElements.length) {
-//         indexCurrentFocus = 0;
-//     }
-//     if (indexCurrentFocus < 0) {
-//         indexCurrentFocus = lightboxFocusElements.length -1;
-//     }
-//     lightboxFocusElements[indexCurrentFocus].focus();
-// };
-
-// // Events
-// const addLightboxEventDelegation = () => {
-//     const photographerPortfolio = document.querySelector(".photographer-portfolio");
-
-//     photographerPortfolio.addEventListener("click", function(event) {
-//         event.preventDefault();
-//         const initElem = event.target;
-//         console.log(initElem);
-
-//         if (initElem.matches("img")) {
-//             toggleLightbox(initElem);
-//         } else {
-//             return;
-//         }
-//     });
-// };
-
-// const addTriggersEventDelegation = () => {
-//     const lightbox = document.querySelector(".lightbox");
-
-//     lightbox.addEventListener("click", (event) => {
-//         const initElem = event.target;
-
-//         if (initElem.matches(".lightbox-trigger")) {
-//             toggleLightbox();
-//         } else {
-//             return;
-//         }
-//     });
-
-//     lightbox.addEventListener("keydown", (event) => {
-//         const initElem = event.target;
-
-//         if (event.code === "Enter" && initElem.matches(".lightbox-trigger")) {
-//             toggleLightbox();
-//         } else {
-//             return;
-//         }
-//     });
-// };
-
-// const documentEvents = () => {
-
-//     document.addEventListener("keydown", (event) => {
-//         if (event.code === "Escape" && mediaLightbox.matches(".active")) {
-//             toggleLightbox();
-//         }
-
-//         if (event.code === "Tab" && mediaLightbox.matches(".active")) {
-//             console.log("tab dans la lightbox");
-//             focusInLightbox(event);
-//         }
-//     });
-// };
