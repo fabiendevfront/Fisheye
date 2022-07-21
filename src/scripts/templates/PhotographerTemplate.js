@@ -23,7 +23,7 @@ export const photographerTemplate = (data) => {
                     </div>
                     <h2 class="photographer__title">${name}</h2>
                 </a>
-                <div class="photographer__infos">
+                <div class="photographer__infos" tabindex="0">
                     <p class="photographer__location">${city}, ${country}</p>
                     <p class="photographer__tagline">${tagline}</p>
                     <p class="photographer__price">${price}€/jour</p>
@@ -41,10 +41,12 @@ export const photographerTemplate = (data) => {
         const photographerProfil = document.createElement("div");
         photographerProfil.classList.add("profil");
         const photographerInfos =  `
-                <div class="profil__infos" tabindex="0">
-                    <h1 class="profil__title">${name}</h1>
-                    <p class="profil__location">${city}, ${country}</p>
-                    <p class="profil__tagline">${tagline}</p>
+                <div class="profil__infos">
+                    <h1 class="profil__title" tabindex="0">${name}</h1>
+                    <div class="profil__subinfos" tabindex="0">
+                        <p class="profil__location">${city}, ${country}</p>
+                        <p class="profil__tagline">${tagline}</p>
+                    </div>
                 </div>
                 <button
                     class="profil__btn btn modal-trigger"

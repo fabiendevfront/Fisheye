@@ -18,51 +18,59 @@ export const modalTemplate = (data) => {
                 <img
                     src="dist/assets/icons/close.svg"
                     class="modal-form__close modal-trigger"
-                    type="button"
+                    role="button"
                     aria-label="Fermer cette fenêtre modale"
                 />
             </header>
             <form class="form" action="#" method="post" novalidate>
                 <div class="form__group">
-                    <label for="first" class="form__label">Prénom</label>
+                    <label for="first" class="form__label" id="label-first">Prénom</label>
                     <input
                         class="form__input form__field"
                         type="text"
                         id="first"
                         name="first"
                         aria-required="true"
+                        aria-labelledby="label-first"
                     />
                 </div>
                 <div class="form__group">
-                    <label for="last" class="form__label">Nom</label>
+                    <label for="last" class="form__label" id="label-last">Nom</label>
                     <input
                         class="form__input form__field"
                         type="text"
                         id="last"
                         name="last"
                         aria-required="true"
+                        aria-labelledby="label-last"
                     />
                 </div>
                 <div class="form__group">
-                    <label for="email" class="form__label">Email</label>
+                    <label for="email" class="form__label" id="label-email">Email</label>
                     <input
                         class="form__input form__field"
                         type="email"
                         id="email"
                         name="email"
                         aria-required="true"
+                        aria-labelledby="label-email"
                     />
                 </div>
                 <div class="form__group">
-                    <label for="message" class="form__label">Votre message</label>
+                    <label for="message" class="form__label" id="label-message">Votre message</label>
                     <textarea
                         class="form__textarea form__field"
                         id="message"
                         name="message"
                         aria-required="true"
+                        aria-labelledby="label-message"
                     ></textarea>
                 </div>
-                <button type="submit" class="form__btn btn btn--form">Envoyer</button>
+                <button
+                    type="submit"
+                    class="form__btn btn btn--form"
+                    aria-label="Envoyer le message"
+                >Envoyer</button>
             </form>
         `;
         modal.innerHTML = modalContent;

@@ -10,7 +10,7 @@
 }
 
 *:focus-visible {
-    box-shadow: 0 0 0 5px variables.$primary-color2;
+    box-shadow: 0 0 0 4px variables.$primary-color2  !important;
     outline: 0;
 }
 

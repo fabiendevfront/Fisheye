@@ -16,15 +16,15 @@ export const mediaTemplate = (data) => {
         if (image !==  undefined) {
             const mediumMedia = `dist/assets/images/works/${name}/medium/${image}`;
             const originalMedialink = `dist/assets/images/works/${name}/original/${image}`;
-            return ` <a href="${originalMedialink}" class="media__link" aria-label="${title}">
+            return ` <a href="${originalMedialink}" class="media__link" aria-label="${title}, voir l'image en grand">
                         <div class="media__picture">
-                            <img src="${mediumMedia}" alt=""/>
+                            <img src="${mediumMedia}" alt="${title}"/>
                             <i class="fas fa-search media__magnifier" aria-hidden="true"></i>
                         </div>
                     </a>`;
         } else {
             const videoMedia = `dist/assets/images/works/${name}/${video}`;
-            return `<a href="${videoMedia}" class="media__link" aria-label="${title}">
+            return `<a href="${videoMedia}" class="media__link" aria-label="${title}, voir la vidéo en grand">
                         <div class="media__video">
                             <video>
                                 <source src="${videoMedia}" type="video/mp4"></source>
@@ -48,9 +48,9 @@ export const mediaTemplate = (data) => {
         const mediaInfos =  `<input type="hidden" value="${id}" />
                             ${mediaBox}
                             <div class="media__infos">
-                                <h2 class="media__title">${title}</h2>
+                                <h2 class="media__title" tabindex="0">${title}</h2>
                                 <div class="media__content">
-                                    <p class="media__likes" aria-label="Nombre de j'aime: ${likes}">${likes}</p>
+                                    <p class="media__likes" aria-label="Nombre de j'aime: ${likes}" tabindex="0">${likes}</p>
                                     <i class="media__heart" aria-label="likes" role="button" tabindex="0"></i>
                                 </div>
                             </div>`;

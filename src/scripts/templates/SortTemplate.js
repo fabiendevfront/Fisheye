@@ -11,7 +11,7 @@ export const sortTemplate = () => {
         const sortFilter = document.createElement("form");
         sortFilter.classList.add("sort-filter");
         const sortFilterContent =  `
-        <label class="sort-filter__label" for="tri">Trier par</label>
+        <label class="sort-filter__label" for="tri" tabindex="0">Trier par</label>
         <div class="sort-filter__style">
             <select class="sort-filter__select" id="tri" name="tri">
                 <option class="sort-filter__option" value="popularite">Popularité</option>

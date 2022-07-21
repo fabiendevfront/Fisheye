@@ -11,9 +11,8 @@ export const lightboxTemplate = () => {
     const createLightbox = () => {
         const lightbox = document.createElement("div");
         lightbox.classList.add("lightbox");
-        lightbox.setAttribute("role", "dialog");
         const lightboxContent =  `
-            <button class="lightbox__close lightbox-trigger" aria-label="Fermer la lightbox">Fermer</button>
+            <button class="lightbox__close lightbox-trigger" aria-label="Fermer l'affichage plein écran du média">Fermer</button>
                 <button class="lightbox__prev" aria-label="Media précédent">Précédent</button>
                 <button class="lightbox__next" aria-label="Media suivant">Suivant</button>
                 <div class="lightbox__container">

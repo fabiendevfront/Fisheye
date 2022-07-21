@@ -21,7 +21,9 @@ export class Lightbox {
     // Init lightbox
     init () {
         this.containerDOM.classList.remove("fadeOut");
-        this.containerDOM.style.display ="block";
+        this.containerDOM.style.display = "block";
+        this.containerDOM.setAttribute("aria-hidden", "false");
+        this.containerDOM.setAttribute("tabindex", "0");
         this.currentMedia = this.getCurrentMedia(this.id);
         this.loadMedia(this.currentMedia);
         this.containerDOM.appendChild(this.template);
@@ -41,6 +43,10 @@ export class Lightbox {
             this.id = null;
             const media = new Picture(currentMedia, this.photographer);
             const image = new Image();
+            image.src = media.imagePath;
+            image.alt = media.title;
+            image.classList.add("lightbox__media-element");
+            image.setAttribute("tabindex", "0");
             const containerIMG = this.template.querySelector(".lightbox__media");
             const loader = document.createElement("div");
             loader.classList.add("lightbox__loader");
@@ -56,13 +62,14 @@ export class Lightbox {
                 containerIMG.appendChild(titleMedia);
                 this.id = media.id;
             };
-            image.src = media.imagePath;
         } else if (currentMedia.video) {
             this.id = null;
             const media = new Video(currentMedia, this.photographer);
             const video = document.createElement("video");
+            video.classList.add("lightbox__media-element");
             video.setAttribute("autoplay", "true");
             video.setAttribute("controls", "");
+            video.setAttribute("tabindex", "0");
             const source = document.createElement("source");
             source.setAttribute("src", media.videoPath);
             source.setAttribute("type", "video/mp4");
@@ -113,7 +120,7 @@ export class Lightbox {
      */
     focusInLightbox (event) {
         event.preventDefault();
-        const lightboxFocusSelector = "button";
+        const lightboxFocusSelector = "button, h2, .lightbox__media-element";
         let lightboxFocusElements = [];
         lightboxFocusElements = Array.from(this.containerDOM.querySelectorAll(lightboxFocusSelector));
         let indexCurrentFocus = lightboxFocusElements.findIndex((index) => index === this.containerDOM.querySelector(":focus"));
@@ -159,6 +166,8 @@ export class Lightbox {
         this.containerDOM.classList.add("fadeOut");
         window.setTimeout(() => {
             this.containerDOM.style.display = "none";
+            this.containerDOM.setAttribute("aria-hidden", "true");
+            this.containerDOM.setAttribute("tabindex", "-1");
             this.containerDOM.removeChild(this.template);
         }, 500);
         document.removeEventListener("keydown", this.onKeyDown);
