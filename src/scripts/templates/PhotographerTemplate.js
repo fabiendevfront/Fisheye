@@ -59,8 +59,8 @@ export const photographerTemplate = (data) => {
                 </div>
                 <aside class="photographer-insert" tabindex="0">
                     <div class="insert">
-                        <span class="insert__like" aria-label="Nombre de j'aime"></span>
-                        <span class="insert__price" aria-label="Prix à la journée ${price}€">${price}€ / jour</span>
+                        <span class="insert__like"></span>
+                        <span class="insert__price">${price}€ / jour</span>
                     </div>
                 </aside>
         `;

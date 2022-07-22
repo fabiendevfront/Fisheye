@@ -20,7 +20,7 @@ export const getTotalLikes = () => {
         const actualLikes = parseInt(like.textContent);
         totalLikes += actualLikes;
     });
-    insertLikes.innerHTML = `${totalLikes} <i class="fas fa-heart insert__heart" aria-hidden="true"></i>`;
+    insertLikes.innerHTML = `${totalLikes} <span class="fas fa-heart insert__heart" aria-hidden="true"></span>`;
 };
 
 /**

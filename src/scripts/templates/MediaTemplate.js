@@ -19,7 +19,7 @@ export const mediaTemplate = (data) => {
             return ` <a href="${originalMedialink}" class="media__link" aria-label="${title}, voir l'image en grand">
                         <div class="media__picture">
                             <img src="${mediumMedia}" alt="${title}"/>
-                            <i class="fas fa-search media__magnifier" aria-hidden="true"></i>
+                            <span class="fas fa-search media__magnifier" aria-hidden="true"></span>
                         </div>
                     </a>`;
         } else {
@@ -30,7 +30,7 @@ export const mediaTemplate = (data) => {
                                 <source src="${videoMedia}" type="video/mp4"></source>
                                 <p>Votre navigateur ne prend pas en charge les vidéos HTML5 en format mp4.</p>
                             </video>
-                            <i class="fas fa-play media__magnifier" aria-hidden="true"></i>
+                            <span class="fas fa-play media__magnifier" aria-hidden="true"></span>
                         </div>
                     </a>`;
         }
@@ -50,8 +50,8 @@ export const mediaTemplate = (data) => {
                             <div class="media__infos">
                                 <h2 class="media__title" tabindex="0">${title}</h2>
                                 <div class="media__content">
-                                    <p class="media__likes" aria-label="Nombre de j'aime: ${likes}" tabindex="0">${likes}</p>
-                                    <i class="media__heart" aria-label="likes" role="button" tabindex="0"></i>
+                                    <p class="media__likes" tabindex="0">${likes}</p>
+                                    <span class="media__heart" aria-label="likes: ${likes}" role="button" tabindex="0"></span>
                                 </div>
                             </div>`;
 
