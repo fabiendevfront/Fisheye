@@ -15,12 +15,16 @@ export const likesTools = () => {
 export const getTotalLikes = () => {
     const likes = document.querySelectorAll(".media__likes");
     const insertLikes = document.querySelector(".insert__like");
+    const insertContainer = document.querySelector(".photographer-insert");
+
     let totalLikes = 0;
     likes.forEach((like) => {
         const actualLikes = parseInt(like.textContent);
         totalLikes += actualLikes;
     });
     insertLikes.innerHTML = `${totalLikes} <span class="fas fa-heart insert__heart" aria-hidden="true"></span>`;
+    const infoPrice = insertContainer.getAttribute("aria-label");
+    insertContainer.setAttribute("aria-label", `${totalLikes} j'aimes, ${infoPrice}`);
 };
 
 /**

@@ -1,6 +1,6 @@
 /**
  * Creates sort filter element.
- * @returns {Function} - Create DOM Element
+ * @returns {Function} - Create HTML Element
  */
 export const sortTemplate = () => {
     /**

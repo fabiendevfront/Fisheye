@@ -23,7 +23,7 @@ class Api {
 }
 
 // Photographer API : Return the data with API function getData()
-class PhotographerApi extends Api {
+export class PhotographerApi extends Api {
     /**
      * @param {string} - url
      */
@@ -61,5 +61,3 @@ class PhotographerApi extends Api {
         return data.media.filter(media => media.photographerId === id);
     }
 }
-
-export { PhotographerApi };

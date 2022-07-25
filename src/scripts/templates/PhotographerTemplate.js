@@ -1,7 +1,7 @@
 /**
  * Creates a photographer card or profil.
  * @param {Object} - photographers data
- * @returns {Function} - Create DOM Element
+ * @returns {Function} - Create HTML Element
  */
 export const photographerTemplate = (data) => {
     const { id, name, city, country, tagline, price, portrait } = data;
@@ -57,10 +57,10 @@ export const photographerTemplate = (data) => {
                 <div class="profil__picture" tabindex="0">
                     <img src="${picture}" alt="Photo du photographe ${name}"/>
                 </div>
-                <aside class="photographer-insert" tabindex="0">
+                <aside class="photographer-insert" aria-label="Tarif journalier ${price}€" tabindex="0">
                     <div class="insert">
-                        <span class="insert__like"></span>
-                        <span class="insert__price">${price}€ / jour</span>
+                        <span class="insert__like" aria-hidden="true"></span>
+                        <span class="insert__price" aria-hidden="true">${price}€ / jour</span>
                     </div>
                 </aside>
         `;

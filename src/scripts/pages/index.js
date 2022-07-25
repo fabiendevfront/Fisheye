@@ -1,10 +1,11 @@
 import { PhotographerApi } from "../api/Api.js";
 import { templateFactory } from "../factories/TemplateFactory.js";
 
+
 // Get the data from the photographers in the JSON file with the API
 const getDataJSON = async () => {
     // JSON file path
-    const JSON = "../../src/data/photographers.json";
+    const JSON = "src/data/photographers.json";
     // Instantiation of the PhotographerApi class with the JSON file path
     const data = new PhotographerApi(JSON);
     // Retrieves data from photographers
@@ -50,8 +51,8 @@ const displayPhotographers = async (photographers) => {
 };
 
 // Init App by displaying the photographer cards
-const init = async (data) => {
-    displayPhotographers(data);
+const init = async (photographers) => {
+    displayPhotographers(photographers);
 };
 
 /* Event at page load:

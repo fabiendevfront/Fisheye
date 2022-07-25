@@ -3,7 +3,7 @@ import { getPhotographerName } from "../utils/tools.js";
 /**
  * Creates a media card with a picture or a video.
  * @param {Object} - portfolio data
- * @returns {Function} - Create DOM Element
+ * @returns {Function} - Create HTML Element
  */
 export const mediaTemplate = (data) => {
     const { id, image, video, likes, title } = data;
@@ -50,7 +50,7 @@ export const mediaTemplate = (data) => {
                             <div class="media__infos">
                                 <h2 class="media__title" tabindex="0">${title}</h2>
                                 <div class="media__content">
-                                    <p class="media__likes" tabindex="0">${likes}</p>
+                                    <p class="media__likes">${likes}</p>
                                     <span class="media__heart" aria-label="likes: ${likes}" role="button" tabindex="0"></span>
                                 </div>
                             </div>`;

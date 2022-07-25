@@ -14,3 +14,6 @@ export const getPhotographerName = () => {
     const photographerName = document.querySelector(".profil__title").textContent.replace(/ /g,"-").toLowerCase();
     return photographerName;
 };
+
+// DOM selection for Lightbox container
+export const lightboxContainer = document.querySelector(".media-lightbox");

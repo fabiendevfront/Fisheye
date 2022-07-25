@@ -7,13 +7,13 @@ import { likesTools } from "../utils/likes.js";
 import { sortDataByPopular, sortTools } from "../utils/sorts.js";
 import { Lightbox } from "../utils/Lightbox.js";
 
-// Stores portfolio data after initialization
+// Stores portfolio data during initialization
 export let mediasPhotographers = [];
 
 // Retrieve JSON data with the API
 const getDataJSON = async () => {
     // JSON file path
-    const JSON = "../../src/data/photographers.json";
+    const JSON = "src/data/photographers.json";
     // Instantiation of the PhotographerApi class with the JSON file path
     const data = new PhotographerApi(JSON);
     // Get the photographer's ID in the URL

@@ -1,5 +1,6 @@
 import { templateFactory } from "../factories/TemplateFactory.js";
 import { mediasPhotographers } from "../pages/photographer";
+import { lightboxContainer } from "./tools.js";
 import { Picture, Video } from "./Media.js";
 
 // Class Lightbox controller : init lightbox, load media, events on click and keyboard
@@ -9,24 +10,20 @@ export class Lightbox {
      * @param {String} - The name of current photographer
      */
     constructor(id, photographerName) {
-        this.mediasPhotographers = mediasPhotographers;
-        this.photographer = photographerName;
         this.id = parseInt(id);
-        this.currentMedia = null;
+        this.photographer = photographerName;
         this.template = templateFactory(this.url, "lightbox");
-        this.containerDOM = document.querySelector(".media-lightbox");
         this.onKeyDown = this.onKeyDown.bind(this);
     }
 
     // Init lightbox
     init () {
-        this.containerDOM.classList.remove("fadeOut");
-        this.containerDOM.style.display = "block";
-        this.containerDOM.setAttribute("aria-hidden", "false");
-        this.containerDOM.setAttribute("tabindex", "0");
-        this.currentMedia = this.getCurrentMedia(this.id);
-        this.loadMedia(this.currentMedia);
-        this.containerDOM.appendChild(this.template);
+        lightboxContainer.classList.remove("fadeOut");
+        lightboxContainer.style.display = "block";
+        lightboxContainer.setAttribute("aria-hidden", "false");
+        lightboxContainer.setAttribute("tabindex", "0");
+        this.loadMedia(this.getCurrentMedia(this.id));
+        lightboxContainer.appendChild(this.template);
         document.addEventListener("keydown", this.onKeyDown);
         this.template.close.addEventListener("click", this.close.bind(this));
         this.template.prev.addEventListener("click", this.prev.bind(this));
@@ -54,7 +51,7 @@ export class Lightbox {
             containerIMG.appendChild(loader);
             const titleMedia = document.createElement("h2");
             titleMedia.classList.add("lightbox__title");
-            titleMedia.setAttribute("tabindex", 0);
+            titleMedia.setAttribute("tabindex", "0");
             titleMedia.innerHTML = media.title;
             image.onload = () => {
                 containerIMG.removeChild(loader);
@@ -79,7 +76,7 @@ export class Lightbox {
             containerVID.innerHTML = "";
             const titleMedia = document.createElement("h2");
             titleMedia.classList.add("lightbox__title");
-            titleMedia.setAttribute("tabindex", 0);
+            titleMedia.setAttribute("tabindex", "0");
             titleMedia.innerHTML = media.title;
             containerVID.appendChild(video);
             video.appendChild(source);
@@ -100,7 +97,7 @@ export class Lightbox {
      */
     getCurrentMedia (id) {
         const indexCurrentMedia = this.getIndexCurrentMedia(id);
-        return this.mediasPhotographers[indexCurrentMedia];
+        return mediasPhotographers[indexCurrentMedia];
     }
 
     /**
@@ -109,7 +106,7 @@ export class Lightbox {
      * @returns The index of the media in the array.
      */
     getIndexCurrentMedia (id) {
-        return this.mediasPhotographers.findIndex((index) => parseInt(index.id) === id);
+        return mediasPhotographers.findIndex((index) => parseInt(index.id) === id);
     }
 
     /**
@@ -122,8 +119,8 @@ export class Lightbox {
         event.preventDefault();
         const lightboxFocusSelector = "button, h2, .lightbox__media-element";
         let lightboxFocusElements = [];
-        lightboxFocusElements = Array.from(this.containerDOM.querySelectorAll(lightboxFocusSelector));
-        let indexCurrentFocus = lightboxFocusElements.findIndex((index) => index === this.containerDOM.querySelector(":focus"));
+        lightboxFocusElements = Array.from(lightboxContainer.querySelectorAll(lightboxFocusSelector));
+        let indexCurrentFocus = lightboxFocusElements.findIndex((index) => index === lightboxContainer.querySelector(":focus"));
         if (!event.shiftKey) {
             indexCurrentFocus++;
         } else {
@@ -163,12 +160,12 @@ export class Lightbox {
      */
     close (event) {
         event.preventDefault();
-        this.containerDOM.classList.add("fadeOut");
+        lightboxContainer.classList.add("fadeOut");
         window.setTimeout(() => {
-            this.containerDOM.style.display = "none";
-            this.containerDOM.setAttribute("aria-hidden", "true");
-            this.containerDOM.setAttribute("tabindex", "-1");
-            this.containerDOM.removeChild(this.template);
+            lightboxContainer.style.display = "none";
+            lightboxContainer.setAttribute("aria-hidden", "true");
+            lightboxContainer.setAttribute("tabindex", "-1");
+            lightboxContainer.removeChild(this.template);
         }, 500);
         document.removeEventListener("keydown", this.onKeyDown);
     }
@@ -181,9 +178,9 @@ export class Lightbox {
         event.preventDefault();
         let indexImage = this.getIndexCurrentMedia(this.id);
         if (indexImage === 0) {
-            indexImage = this.mediasPhotographers.length;
+            indexImage = mediasPhotographers.length;
         }
-        this.loadMedia(this.mediasPhotographers[indexImage - 1]);
+        this.loadMedia(mediasPhotographers[indexImage - 1]);
     }
 
     /**
@@ -193,9 +190,9 @@ export class Lightbox {
     next (event) {
         event.preventDefault();
         let indexImage = this.getIndexCurrentMedia(this.id);
-        if (indexImage === this.mediasPhotographers.length - 1) {
+        if (indexImage === mediasPhotographers.length - 1) {
             indexImage = -1;
         }
-        this.loadMedia(this.mediasPhotographers[indexImage + 1]);
+        this.loadMedia(mediasPhotographers[indexImage + 1]);
     }
 }

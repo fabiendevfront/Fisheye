@@ -1,6 +1,6 @@
 /**
  * Creates modal and form element.
- * @returns {Function} - Create DOM Element
+ * @returns {Function} - Create HTML Element
  */
 export const modalTemplate = (data) => {
     /**
@@ -21,7 +21,6 @@ export const modalTemplate = (data) => {
                     class="modal-form__close modal-trigger"
                     role="button"
                     aria-label="Fermer cette fenêtre modale"
-
                 />
             </header>
             <form class="form" action="#" method="post" novalidate>
