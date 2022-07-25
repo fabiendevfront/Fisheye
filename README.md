@@ -50,9 +50,11 @@ Un dépôt de code sur GitHub qui contient le code du projet.
 
 ## Installation du projet
 
-Clone the repository : git@github.com:fabiendevfront/Fisheye.git
+#### Cloner le dépôt :
 
+```bash
 git clone git@github.com:fabiendevfront/Fisheye.git
+```
 
 #### Développement :
 
