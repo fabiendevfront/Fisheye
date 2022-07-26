@@ -70,4 +70,14 @@ const addEventDelegation = () => {
             return;
         }
     });
+
+    photographerPortfolio.addEventListener("keydown", function(event) {
+        const initElem = event.target;
+
+        if (event.code === "Enter" && initElem.matches(".media__heart")) {
+            likeMedia(initElem);
+        } else {
+            return;
+        }
+    });
 };
