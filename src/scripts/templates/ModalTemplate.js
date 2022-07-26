@@ -87,7 +87,7 @@ export const modalTemplate = (data) => {
         modalSuccess.classList.add("modal-success");
         const modalSuccessContent =  `
             <img src="dist/assets/icons/close.svg" alt="Fermer la modale" class="modal-success__close modal-trigger"/>
-            <div class="modal-success__content" aria-label="Votre message a bien été envoyé. Merci" tabindex="0" >
+            <div class="modal-success__content" tabindex="0">
                 <p class="modal-success__send">Votre message a bien été envoyé.</p>
                 <p class="modal-success__thanks">Merci !</p>
             </div>
