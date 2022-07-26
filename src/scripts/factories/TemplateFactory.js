@@ -7,11 +7,11 @@ import { lightboxTemplate } from "../templates/LightboxTemplate.js";
 
 /**
  * It takes a data object and a type string as arguments and returns a template.
- * @param {Object} - data
  * @param {String} - type
+ * @param {Object} - data
  * @returns {Function} - Returns a function that generates an HTML element
  */
-export const templateFactory = (data, type) => {
+export const templateFactory = (type, data = {}) => {
     if (type === "photographerCard") {
         return photographerTemplate(data).createPhotographerCard();
     } else if (type === "photographerProfil")  {

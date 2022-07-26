@@ -18,9 +18,9 @@ const displaySkeleton = async (photographers) => {
     // HTML node in which the skeleton cards are inserted
     const photographersSection = document.querySelector(".photographer_section");
     // Browse the photographers
-    await photographers.forEach((photographer) => {
+    await photographers.forEach(() => {
         // Create a skeleton card by photographer
-        const skeletonCard = templateFactory(photographer, "skeletonCard");
+        const skeletonCard = templateFactory("skeletonCard");
         // Add the skeleton card to the DOM
         photographersSection.appendChild(skeletonCard);
     });
@@ -44,7 +44,7 @@ const displayPhotographers = async (photographers) => {
     // Browse the photographers
     await photographers.forEach((photographer) => {
         // Create a card by photographer with all his info
-        const photographerModel = templateFactory(photographer, "photographerCard");
+        const photographerModel = templateFactory("photographerCard", photographer);
         // Add the photographer's card to the DOM
         photographersSection.appendChild(photographerModel);
     });

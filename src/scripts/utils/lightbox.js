@@ -12,7 +12,7 @@ export class Lightbox {
     constructor(id, photographerName) {
         this.id = parseInt(id);
         this.photographer = photographerName;
-        this.template = templateFactory(this.url, "lightbox");
+        this.template = templateFactory("lightbox");
         this.onKeyDown = this.onKeyDown.bind(this);
     }
 

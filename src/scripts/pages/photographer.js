@@ -28,14 +28,14 @@ const getDataJSON = async () => {
 const displayData = (photographer, portfolio) => {
     // Creation of photographer's profile
     const photographerHeader = document.querySelector(".photographer-header");
-    const profil = templateFactory(photographer, "photographerProfil");
+    const profil = templateFactory("photographerProfil", photographer);
     photographerHeader.appendChild(profil);
 
     // Creation of photographer's portfolio
     const photographerPortfolio = document.querySelector(".photographer-portfolio");
     const portfolioSortByPopular = sortDataByPopular(portfolio);
     portfolioSortByPopular.forEach((media) => {
-        const mediaCard = templateFactory(media, "portfolio");
+        const mediaCard = templateFactory("portfolio", media);
         photographerPortfolio.appendChild(mediaCard);
     });
 
@@ -47,7 +47,7 @@ const displayData = (photographer, portfolio) => {
 const sortData = (portfolio) => {
     // Creating filters and adding them to the DOM
     const sortMedias = document.querySelector(".media-sorting");
-    const sortFilter = templateFactory(portfolio, "sortFilter");
+    const sortFilter = templateFactory("sortFilter");
     sortMedias.appendChild(sortFilter);
 
     // Tools : sorting control functions once the DOM is loaded
@@ -58,11 +58,11 @@ const sortData = (portfolio) => {
 const displayModal = (photographer) => {
     // Creation of the modal
     const contactModal = document.querySelector(".contact-modal");
-    const modalForm = templateFactory(photographer, "modalForm");
+    const modalForm = templateFactory("modalForm", photographer);
     contactModal.appendChild(modalForm);
 
     // Creation of the success modal
-    const modalSuccess = templateFactory(photographer, "modalSuccess");
+    const modalSuccess = templateFactory("modalSuccess");
     contactModal.appendChild(modalSuccess);
 
     // Tools : modal and form control functions once the DOM is loaded
