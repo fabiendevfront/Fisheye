@@ -13,6 +13,7 @@ Projet réalisé dans le cadre du parcours de développeur d'application Javascr
 * GIT - Gestion de versions
 * [GitHub](https://github.com/) - Hébergement en ligne des dépôts GIT
 * Node.js & NPM - Pour l'installation de SASS, Webpack, ESLint, Babel
+* [NVDA](https://www.nvda-fr.org/) – Lecteur d’écran
 * [Visual Studio Code](https://code.visualstudio.com/) - Editeur de textes
 * [Figma](https://www.figma.com/) - Outil d'UI design
 * [Notion](https://www.notion.so/) - Suivi de projet

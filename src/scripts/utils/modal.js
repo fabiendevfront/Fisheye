@@ -17,7 +17,7 @@ const main = document.querySelector(".main");
 
 const modalFocusSelector = "h1, label, input, textarea, button.form__btn, img.modal-form__close";
 let modalFocusElements = [];
-const modalSuccessFocusSelector = "img.modal-success__close, button.modal-success__btn";
+const modalSuccessFocusSelector = "img.modal-success__close, button.modal-success__btn, .modal-success__content";
 let modalSuccessFocusElements = [];
 
 /* ==========
